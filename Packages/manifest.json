@@ -1,6 +1,11 @@
 {
   "dependencies": {
     "com.coffee.upm-git-extension": "https://github.com/mob-sakai/UpmGitExtension.git",
+    "com.elestrago.simpleui": "https://gitlab.com/elestrago63/simpleui.git#upm",
+    "com.jeffcampbellmakesgames.entitasredux": "https://github.com/jeffcampbellmakesgames/entitas-redux.git#releases/stable",
+    "com.jeffcampbellmakesgames.genesis": "https://github.com/jeffcampbellmakesgames/genesis.git#release/stable",
+    "com.playdarium.unirx": "https://gitlab.com/nazgull30/unirxplaydarium.git",
+    "com.playdarium.zenject": "https://gitlab.com/nazgull30/zenjectplaydarium.git#upm",
     "com.unity.collab-proxy": "2.0.3",
     "com.unity.feature.development": "1.0.1",
     "com.unity.ide.rider": "3.0.18",

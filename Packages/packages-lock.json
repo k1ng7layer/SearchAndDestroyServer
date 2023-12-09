@@ -7,6 +7,48 @@
       "dependencies": {},
       "hash": "8fc54a2cdf0c2169dd26852ea0fe202e11158f43"
     },
+    "com.elestrago.simpleui": {
+      "version": "https://gitlab.com/elestrago63/simpleui.git#upm",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "d3da3af148b172c7a4702c54f8853013fb52fc26"
+    },
+    "com.jeffcampbellmakesgames.entitasredux": {
+      "version": "https://github.com/jeffcampbellmakesgames/entitas-redux.git#releases/stable",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.jeffcampbellmakesgames.genesis": "2.4.7"
+      },
+      "hash": "0f30146ea5cc275ae7ea1189c698e7a523cfd320"
+    },
+    "com.jeffcampbellmakesgames.genesis": {
+      "version": "https://github.com/jeffcampbellmakesgames/genesis.git#release/stable",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.settings-manager": "1.0.3",
+        "com.unity.sharp-zip-lib": "1.2.2-preview.1"
+      },
+      "hash": "63103d2350b2668405c2b3ba2e09e9ee0f5a743c"
+    },
+    "com.playdarium.unirx": {
+      "version": "https://gitlab.com/nazgull30/unirxplaydarium.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "93faf7702066016f58a9b1bf576c6ba478df7c2b"
+    },
+    "com.playdarium.zenject": {
+      "version": "https://gitlab.com/nazgull30/zenjectplaydarium.git#upm",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.playdarium.unirx": "https://gitlab.com/nazgull30/unirxplaydarium.git#upm"
+      },
+      "hash": "75ab5f7f27e257e8b35d5e44bf13f927781e9551"
+    },
     "com.unity.collab-proxy": {
       "version": "2.0.3",
       "depth": 0,
@@ -76,7 +118,14 @@
     },
     "com.unity.settings-manager": {
       "version": "1.0.3",
-      "depth": 2,
+      "depth": 1,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://packages.unity.com"
+    },
+    "com.unity.sharp-zip-lib": {
+      "version": "1.2.2-preview.1",
+      "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
