@@ -22,11 +22,11 @@ namespace Services.SceneLoading.Impls
             _processor = new Core.LoadingProcessor.Impls.LoadingProcessor();
             _processor
                 .AddProcess(new OpenLoadingWindowProcess(_signalBus))
-                .AddProcess(new LoadingProcess(ELevelName.GAME, LoadSceneMode.Additive))
+                .AddProcess(new LoadingProcess(ELevelName.COMMON, LoadSceneMode.Additive))
                 .AddProcess(new LoadingProcess(levelName, LoadSceneMode.Additive))
                 //.AddProcess(new SetActiveSceneProcess(ELevelName.GAME))
-                .AddProcess(new SetActiveSceneProcess(levelName))
-                .AddProcess(new UnloadProcess(ELevelName.GAME));
+                .AddProcess(new SetActiveSceneProcess(levelName));
+                //.AddProcess(new UnloadProcess(ELevelName.INITIALIZATION));
                 
             if (!string.IsNullOrWhiteSpace(_currentLevel.ToString()))
             {
@@ -39,6 +39,8 @@ namespace Services.SceneLoading.Impls
                 .AddProcess(new WaitUpdateProcess(4))
                 .AddProcess(new ProjectWindowBack(_signalBus))
                 .DoProcess();
+
+            _currentLevel = levelName;
         }
 
         public void LoadGameFromMenu()
@@ -46,8 +48,8 @@ namespace Services.SceneLoading.Impls
             _processor = new Core.LoadingProcessor.Impls.LoadingProcessor();
             _processor
                 .AddProcess(new OpenLoadingWindowProcess(_signalBus))
-                .AddProcess(new LoadingProcess(ELevelName.GAME, LoadSceneMode.Additive))
-                .AddProcess(new SetActiveSceneProcess(ELevelName.GAME))
+                .AddProcess(new LoadingProcess(ELevelName.INITIALIZATION, LoadSceneMode.Additive))
+                .AddProcess(new SetActiveSceneProcess(ELevelName.INITIALIZATION))
                 .AddProcess(new RunContextProcess("GameContext"))
                 .AddProcess(new WaitUpdateProcess(4))
                 .AddProcess(new ProjectWindowBack(_signalBus))
@@ -59,15 +61,15 @@ namespace Services.SceneLoading.Impls
             _processor = new Core.LoadingProcessor.Impls.LoadingProcessor();
             _processor
                 .AddProcess(new OpenLoadingWindowProcess(_signalBus))
-                .AddProcess(new LoadingProcess(ELevelName.GAME, LoadSceneMode.Additive))
-                .AddProcess(new SetActiveSceneProcess(ELevelName.GAME))
+                .AddProcess(new LoadingProcess(ELevelName.INITIALIZATION, LoadSceneMode.Additive))
+                .AddProcess(new SetActiveSceneProcess(ELevelName.INITIALIZATION))
                 .AddProcess(new UnloadProcess(ELevelName.SPLASH))
                 .AddProcess(new RunContextProcess("GameContext"))
                 .AddProcess(new WaitUpdateProcess(4))
                 .AddProcess(new ProjectWindowBack(_signalBus))
                 .DoProcess();
             
-            _currentLevel = ELevelName.GAME;
+            _currentLevel = ELevelName.INITIALIZATION;
         }
 
         public float GetProgress()

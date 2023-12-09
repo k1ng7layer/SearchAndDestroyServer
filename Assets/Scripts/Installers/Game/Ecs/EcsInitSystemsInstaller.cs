@@ -3,7 +3,7 @@ using Zenject;
 
 namespace Installers.Game.Ecs
 {
-    public class EcsSystemsInstaller : MonoInstaller
+    public class EcsInitSystemsInstaller : MonoInstaller
     {
         public override void InstallBindings()
         {

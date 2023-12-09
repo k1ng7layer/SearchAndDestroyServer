@@ -15,22 +15,28 @@ public static class GameComponentsLookup
 {
 	public const int Destroyed = 0;
 	public const int Link = 1;
-	public const int Position = 2;
-	public const int Rotation = 3;
-	public const int Transform = 4;
-	public const int LinkRemovedListener = 5;
-	public const int PositionAddedListener = 6;
-	public const int RotationAddedListener = 7;
+	public const int NetworkId = 2;
+	public const int Player = 3;
+	public const int Position = 4;
+	public const int Rotation = 5;
+	public const int Transform = 6;
+	public const int Uid = 7;
+	public const int LinkRemovedListener = 8;
+	public const int PositionAddedListener = 9;
+	public const int RotationAddedListener = 10;
 
-	public const int TotalComponents = 8;
+	public const int TotalComponents = 11;
 
 	public static readonly string[] ComponentNames =
 	{
 		"Destroyed",
 		"Link",
+		"NetworkId",
+		"Player",
 		"Position",
 		"Rotation",
 		"Transform",
+		"Uid",
 		"LinkRemovedListener",
 		"PositionAddedListener",
 		"RotationAddedListener"
@@ -40,9 +46,12 @@ public static class GameComponentsLookup
 	{
 		typeof(Ecs.Game.Components.DestroyedComponent),
 		typeof(Ecs.Game.Components.LinkComponent),
+		typeof(Ecs.Game.Components.NetworkIdComponent),
+		typeof(Ecs.Game.Components.PlayerComponent),
 		typeof(Ecs.Game.Components.PositionComponent),
 		typeof(Ecs.Game.Components.RotationComponent),
 		typeof(Ecs.Game.Components.TransformComponent),
+		typeof(Ecs.Game.Components.UidComponent),
 		typeof(LinkRemovedListenerComponent),
 		typeof(PositionAddedListenerComponent),
 		typeof(RotationAddedListenerComponent)
@@ -52,12 +61,15 @@ public static class GameComponentsLookup
 	{
 		{ typeof(Ecs.Game.Components.DestroyedComponent), 0 },
 		{ typeof(Ecs.Game.Components.LinkComponent), 1 },
-		{ typeof(Ecs.Game.Components.PositionComponent), 2 },
-		{ typeof(Ecs.Game.Components.RotationComponent), 3 },
-		{ typeof(Ecs.Game.Components.TransformComponent), 4 },
-		{ typeof(LinkRemovedListenerComponent), 5 },
-		{ typeof(PositionAddedListenerComponent), 6 },
-		{ typeof(RotationAddedListenerComponent), 7 }
+		{ typeof(Ecs.Game.Components.NetworkIdComponent), 2 },
+		{ typeof(Ecs.Game.Components.PlayerComponent), 3 },
+		{ typeof(Ecs.Game.Components.PositionComponent), 4 },
+		{ typeof(Ecs.Game.Components.RotationComponent), 5 },
+		{ typeof(Ecs.Game.Components.TransformComponent), 6 },
+		{ typeof(Ecs.Game.Components.UidComponent), 7 },
+		{ typeof(LinkRemovedListenerComponent), 8 },
+		{ typeof(PositionAddedListenerComponent), 9 },
+		{ typeof(RotationAddedListenerComponent), 10 }
 	};
 
 	/// <summary>

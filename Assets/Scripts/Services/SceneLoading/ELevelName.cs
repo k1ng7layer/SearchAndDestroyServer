@@ -3,6 +3,8 @@
     public enum ELevelName
     {
         SPLASH,
-        GAME,
+        INITIALIZATION,
+        COMMON,
+        CLASSIC
     }
 }

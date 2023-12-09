@@ -1,4 +1,5 @@
-﻿using Mirror;
+﻿using System;
+using Mirror;
 using UnityEngine;
 
 namespace Services.Network.Impl
@@ -8,10 +9,13 @@ namespace Services.Network.Impl
     {
         public string ServerIp { get; private set; }
 
+        public event Action<uint> ClientConnected; 
+
         public override void OnServerConnect(NetworkConnectionToClient conn)
         {
             Debug.Log($"OnServerConnect {conn.address}");
             
+            ClientConnected?.Invoke(conn.identity.netId);
         }
 
         void INetworkServerManager.StartSever()

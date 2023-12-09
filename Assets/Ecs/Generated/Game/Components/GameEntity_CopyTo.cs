@@ -18,7 +18,19 @@ public partial class GameEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is Ecs.Game.Components.RotationComponent Rotation)
+		if (component is Ecs.Game.Components.UidComponent Uid)
+		{
+			CopyUidTo(Uid);
+		}
+		else if (component is Ecs.Game.Components.NetworkIdComponent NetworkId)
+		{
+			CopyNetworkIdTo(NetworkId);
+		}
+		else if (component is Ecs.Game.Components.PlayerComponent Player)
+		{
+			IsPlayer = true;
+		}
+		else if (component is Ecs.Game.Components.RotationComponent Rotation)
 		{
 			CopyRotationTo(Rotation);
 		}
