@@ -1,6 +1,10 @@
-﻿using Core.LoadingProcessor.Impls;
+﻿using System;
+using Core.LoadingProcessor.Impls;
 using Game.Services.LoadingProcessor.Impls;
 using Services.LoadingProcessor.Impls;
+using UniRx.Async;
+using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using Zenject;
 
@@ -41,6 +45,39 @@ namespace Services.SceneLoading.Impls
                 .DoProcess();
 
             _currentLevel = levelName;
+        }
+
+        public async UniTask LoadGameLevelAsync(ELevelName levelName)
+        {
+            _processor = new Core.LoadingProcessor.Impls.LoadingProcessor();
+            _processor
+                .AddProcess(new OpenLoadingWindowProcess(_signalBus))
+                .AddProcess(new LoadingProcess(ELevelName.COMMON, LoadSceneMode.Additive))
+                .AddProcess(new LoadingProcess(levelName, LoadSceneMode.Additive))
+                //.AddProcess(new SetActiveSceneProcess(ELevelName.GAME))
+                .AddProcess(new SetActiveSceneProcess(levelName));
+            //.AddProcess(new UnloadProcess(ELevelName.INITIALIZATION));
+                
+            if (!string.IsNullOrWhiteSpace(_currentLevel.ToString()))
+            {
+                var lastScene = SceneManager.GetSceneByName(_currentLevel.ToString());
+                if(lastScene.IsValid() && lastScene.isLoaded)
+                    _processor.AddProcess(new UnloadProcess(_currentLevel));
+            }
+
+            _processor.AddProcess(new RunContextProcess("GameContext"))
+                .AddProcess(new WaitUpdateProcess(4))
+                .AddProcess(new ProjectWindowBack(_signalBus));;
+
+            _currentLevel = levelName;
+            
+            await UniTask.Run(async () =>
+            {
+                await UniTask.Delay(5000);
+                Debug.Log($"ssssss");
+            });
+            
+            await UniTask.Run(_processor.DoProcess, false);
         }
 
         public void LoadGameFromMenu()

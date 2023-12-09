@@ -91,16 +91,16 @@ public partial class Contexts : JCMG.EntitasRedux.IContexts
 //------------------------------------------------------------------------------
 public partial class Contexts
 {
-	public const string NetworkId = "NetworkId";
+	public const string ConnectionId = "ConnectionId";
 	public const string Uid = "Uid";
 
 	[JCMG.EntitasRedux.PostConstructor]
 	public void InitializeEntityIndices()
 	{
-		Game.AddEntityIndex(new JCMG.EntitasRedux.PrimaryEntityIndex<GameEntity, uint>(
-			NetworkId,
-			Game.GetGroup(GameMatcher.NetworkId),
-			(e, c) => ((Ecs.Game.Components.NetworkIdComponent)c).Value));
+		Game.AddEntityIndex(new JCMG.EntitasRedux.PrimaryEntityIndex<GameEntity, int>(
+			ConnectionId,
+			Game.GetGroup(GameMatcher.ConnectionId),
+			(e, c) => ((Ecs.Game.Components.ConnectionIdComponent)c).Value));
 
 		Game.AddEntityIndex(new JCMG.EntitasRedux.PrimaryEntityIndex<GameEntity, Ecs.Uid.Uid>(
 			Uid,
@@ -111,9 +111,9 @@ public partial class Contexts
 
 public static class ContextsExtensions
 {
-	public static GameEntity GetEntityWithNetworkId(this GameContext context, uint Value)
+	public static GameEntity GetEntityWithConnectionId(this GameContext context, int Value)
 	{
-		return ((JCMG.EntitasRedux.PrimaryEntityIndex<GameEntity, uint>)context.GetEntityIndex(Contexts.NetworkId)).GetEntity(Value);
+		return ((JCMG.EntitasRedux.PrimaryEntityIndex<GameEntity, int>)context.GetEntityIndex(Contexts.ConnectionId)).GetEntity(Value);
 	}
 
 	public static GameEntity GetEntityWithUid(this GameContext context, Ecs.Uid.Uid Value)

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UniRx.Async;
 
 namespace Core.LoadingProcessor.Impls
 {
@@ -29,6 +30,12 @@ namespace Core.LoadingProcessor.Impls
         }
 
         public void DoProcess()
+        {
+            var process = _processes.Dequeue();
+            process.Do(OnComplete);
+        }
+
+        public async UniTask DoProcessAsync()
         {
             var process = _processes.Dequeue();
             process.Do(OnComplete);

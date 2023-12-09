@@ -7,12 +7,12 @@
 //		the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public partial interface INetworkIdEntity
+public partial interface IConnectionIdEntity
 {
-	Ecs.Game.Components.NetworkIdComponent NetworkId { get; }
-	bool HasNetworkId { get; }
+	Ecs.Game.Components.ConnectionIdComponent ConnectionId { get; }
+	bool HasConnectionId { get; }
 
-	void AddNetworkId(uint newValue);
-	void ReplaceNetworkId(uint newValue);
-	void RemoveNetworkId();
+	void AddConnectionId(int newValue);
+	void ReplaceConnectionId(int newValue);
+	void RemoveConnectionId();
 }

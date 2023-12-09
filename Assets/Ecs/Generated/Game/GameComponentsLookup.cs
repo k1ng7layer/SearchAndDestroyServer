@@ -13,9 +13,9 @@ using JCMG.EntitasRedux;
 
 public static class GameComponentsLookup
 {
-	public const int Destroyed = 0;
-	public const int Link = 1;
-	public const int NetworkId = 2;
+	public const int ConnectionId = 0;
+	public const int Destroyed = 1;
+	public const int Link = 2;
 	public const int Player = 3;
 	public const int Position = 4;
 	public const int Rotation = 5;
@@ -29,9 +29,9 @@ public static class GameComponentsLookup
 
 	public static readonly string[] ComponentNames =
 	{
+		"ConnectionId",
 		"Destroyed",
 		"Link",
-		"NetworkId",
 		"Player",
 		"Position",
 		"Rotation",
@@ -44,9 +44,9 @@ public static class GameComponentsLookup
 
 	public static readonly System.Type[] ComponentTypes =
 	{
+		typeof(Ecs.Game.Components.ConnectionIdComponent),
 		typeof(Ecs.Game.Components.DestroyedComponent),
 		typeof(Ecs.Game.Components.LinkComponent),
-		typeof(Ecs.Game.Components.NetworkIdComponent),
 		typeof(Ecs.Game.Components.PlayerComponent),
 		typeof(Ecs.Game.Components.PositionComponent),
 		typeof(Ecs.Game.Components.RotationComponent),
@@ -59,9 +59,9 @@ public static class GameComponentsLookup
 
 	public static readonly Dictionary<Type, int> ComponentTypeToIndex = new Dictionary<Type, int>
 	{
-		{ typeof(Ecs.Game.Components.DestroyedComponent), 0 },
-		{ typeof(Ecs.Game.Components.LinkComponent), 1 },
-		{ typeof(Ecs.Game.Components.NetworkIdComponent), 2 },
+		{ typeof(Ecs.Game.Components.ConnectionIdComponent), 0 },
+		{ typeof(Ecs.Game.Components.DestroyedComponent), 1 },
+		{ typeof(Ecs.Game.Components.LinkComponent), 2 },
 		{ typeof(Ecs.Game.Components.PlayerComponent), 3 },
 		{ typeof(Ecs.Game.Components.PositionComponent), 4 },
 		{ typeof(Ecs.Game.Components.RotationComponent), 5 },

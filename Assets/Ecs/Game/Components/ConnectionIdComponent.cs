@@ -3,9 +3,9 @@
 namespace Ecs.Game.Components
 {
     [Game]
-    public class NetworkIdComponent : IComponent
+    public class ConnectionIdComponent : IComponent
     {
         [PrimaryEntityIndex]
-        public uint Value;
+        public int Value;
     }
 }

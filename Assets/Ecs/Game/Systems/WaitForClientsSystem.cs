@@ -30,7 +30,7 @@ namespace Ecs.Game.Systems
             _networkServerManager.ClientConnected -= OnClientConnected;
         }
 
-        private void OnClientConnected(uint id)
+        private void OnClientConnected(int id)
         {
             _game.CreatePlayer(id);
         }

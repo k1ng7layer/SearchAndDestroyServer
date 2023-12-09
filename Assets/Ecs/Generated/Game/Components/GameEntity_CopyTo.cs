@@ -22,9 +22,9 @@ public partial class GameEntity
 		{
 			CopyUidTo(Uid);
 		}
-		else if (component is Ecs.Game.Components.NetworkIdComponent NetworkId)
+		else if (component is Ecs.Game.Components.ConnectionIdComponent ConnectionId)
 		{
-			CopyNetworkIdTo(NetworkId);
+			CopyConnectionIdTo(ConnectionId);
 		}
 		else if (component is Ecs.Game.Components.PlayerComponent Player)
 		{
