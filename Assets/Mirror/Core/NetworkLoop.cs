@@ -168,6 +168,8 @@ namespace Mirror
             // see also: https://github.com/vis2k/Mirror/pull/2627/files
             PlayerLoopSystem playerLoop = PlayerLoop.GetCurrentPlayerLoop();
 
+            UniRx.Async.PlayerLoopHelper.Initialize(ref playerLoop);
+            
             // add NetworkEarlyUpdate to the end of EarlyUpdate so it runs after
             // any Unity initializations but before the first Update/FixedUpdate
             AddToPlayerLoop(NetworkEarlyUpdate, typeof(NetworkLoop), ref playerLoop, typeof(EarlyUpdate), AddMode.End);

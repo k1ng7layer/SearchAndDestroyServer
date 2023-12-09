@@ -11,6 +11,7 @@ namespace Services.Network.Impl
         public override void OnServerConnect(NetworkConnectionToClient conn)
         {
             Debug.Log($"OnServerConnect {conn.address}");
+            
         }
 
         void INetworkServerManager.StartSever()
