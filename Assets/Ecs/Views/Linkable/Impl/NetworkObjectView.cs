@@ -1,4 +1,5 @@
-﻿using JCMG.EntitasRedux;
+﻿using System;
+using JCMG.EntitasRedux;
 using Mirror;
 using UnityEditor;
 using UnityEngine;
@@ -91,6 +92,15 @@ namespace Ecs.Views.Linkable.Impl
         public virtual void OnRotationAdded(GameEntity entity, Quaternion value)
         {
             transform.rotation = value;
+        }
+
+        private void Update()
+        {
+            if (_entity != null)
+                _entity.Position.Value = transform.position;
+            
+            if (_entity != null)
+                _entity.Rotation.Value = transform.rotation;
         }
     }
 }

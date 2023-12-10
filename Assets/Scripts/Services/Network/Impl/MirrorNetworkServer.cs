@@ -41,6 +41,16 @@ namespace Services.Network.Impl
             throw new NotImplementedException();
         }
 
+        public void UnRegisterMessageHandler<T>() where T : struct, NetworkMessage
+        {
+            NetworkServer.UnregisterHandler<T>();
+        }
+
+        public void Spawn(GameObject obj, NetworkConnection connection)
+        {
+            NetworkServer.Spawn(obj, connection);
+        }
+
         void INetworkServerManager.StartSever()
         {
             StartServer();
@@ -49,6 +59,11 @@ namespace Services.Network.Impl
         void INetworkServerManager.StopServer()
         {
             StopServer();
+        }
+
+        public override void OnServerAddPlayer(NetworkConnectionToClient conn)
+        {
+            
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Mirror.RemoteCalls;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Mirror
 {
@@ -1271,7 +1272,7 @@ namespace Mirror
 
             // find all NetworkIdentities in the scene.
             // all of them are disabled because of NetworkScenePostProcess.
-            NetworkIdentity[] identities = Resources.FindObjectsOfTypeAll<NetworkIdentity>();
+            NetworkIdentity[] identities = Object.FindObjectsOfType<NetworkIdentity>();
 
             // first pass: activate all scene objects
             foreach (NetworkIdentity identity in identities)

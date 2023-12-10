@@ -1,4 +1,5 @@
 ﻿using Ecs.Game.Systems;
+using Services.PlayerService.Impl;
 using Zenject;
 
 namespace Installers.Game.Ecs
@@ -7,7 +8,9 @@ namespace Installers.Game.Ecs
     {
         public override void InstallBindings()
         {
-            Container.BindInterfacesAndSelfTo<WaitForClientsSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<InitializeGameSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<SpawnPlayerSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<StartGameSystem>().AsSingle();
         }
     }
 }

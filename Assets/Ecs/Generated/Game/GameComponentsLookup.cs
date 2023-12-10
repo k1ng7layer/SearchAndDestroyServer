@@ -15,28 +15,36 @@ public static class GameComponentsLookup
 {
 	public const int ConnectionId = 0;
 	public const int Destroyed = 1;
-	public const int Link = 2;
-	public const int Player = 3;
-	public const int Position = 4;
-	public const int Rotation = 5;
-	public const int Transform = 6;
-	public const int Uid = 7;
-	public const int LinkRemovedListener = 8;
-	public const int PositionAddedListener = 9;
-	public const int RotationAddedListener = 10;
+	public const int GameMode = 2;
+	public const int Instantiate = 3;
+	public const int Link = 4;
+	public const int Player = 5;
+	public const int Position = 6;
+	public const int Prefab = 7;
+	public const int Rotation = 8;
+	public const int Transform = 9;
+	public const int Uid = 10;
+	public const int InstantiateAddedListener = 11;
+	public const int LinkRemovedListener = 12;
+	public const int PositionAddedListener = 13;
+	public const int RotationAddedListener = 14;
 
-	public const int TotalComponents = 11;
+	public const int TotalComponents = 15;
 
 	public static readonly string[] ComponentNames =
 	{
 		"ConnectionId",
 		"Destroyed",
+		"GameMode",
+		"Instantiate",
 		"Link",
 		"Player",
 		"Position",
+		"Prefab",
 		"Rotation",
 		"Transform",
 		"Uid",
+		"InstantiateAddedListener",
 		"LinkRemovedListener",
 		"PositionAddedListener",
 		"RotationAddedListener"
@@ -46,12 +54,16 @@ public static class GameComponentsLookup
 	{
 		typeof(Ecs.Game.Components.ConnectionIdComponent),
 		typeof(Ecs.Game.Components.DestroyedComponent),
+		typeof(Ecs.Game.Components.GameModeComponent),
+		typeof(Ecs.Game.Components.InstantiateComponent),
 		typeof(Ecs.Game.Components.LinkComponent),
 		typeof(Ecs.Game.Components.PlayerComponent),
 		typeof(Ecs.Game.Components.PositionComponent),
+		typeof(Ecs.Game.Components.PrefabComponent),
 		typeof(Ecs.Game.Components.RotationComponent),
 		typeof(Ecs.Game.Components.TransformComponent),
 		typeof(Ecs.Game.Components.UidComponent),
+		typeof(InstantiateAddedListenerComponent),
 		typeof(LinkRemovedListenerComponent),
 		typeof(PositionAddedListenerComponent),
 		typeof(RotationAddedListenerComponent)
@@ -61,15 +73,19 @@ public static class GameComponentsLookup
 	{
 		{ typeof(Ecs.Game.Components.ConnectionIdComponent), 0 },
 		{ typeof(Ecs.Game.Components.DestroyedComponent), 1 },
-		{ typeof(Ecs.Game.Components.LinkComponent), 2 },
-		{ typeof(Ecs.Game.Components.PlayerComponent), 3 },
-		{ typeof(Ecs.Game.Components.PositionComponent), 4 },
-		{ typeof(Ecs.Game.Components.RotationComponent), 5 },
-		{ typeof(Ecs.Game.Components.TransformComponent), 6 },
-		{ typeof(Ecs.Game.Components.UidComponent), 7 },
-		{ typeof(LinkRemovedListenerComponent), 8 },
-		{ typeof(PositionAddedListenerComponent), 9 },
-		{ typeof(RotationAddedListenerComponent), 10 }
+		{ typeof(Ecs.Game.Components.GameModeComponent), 2 },
+		{ typeof(Ecs.Game.Components.InstantiateComponent), 3 },
+		{ typeof(Ecs.Game.Components.LinkComponent), 4 },
+		{ typeof(Ecs.Game.Components.PlayerComponent), 5 },
+		{ typeof(Ecs.Game.Components.PositionComponent), 6 },
+		{ typeof(Ecs.Game.Components.PrefabComponent), 7 },
+		{ typeof(Ecs.Game.Components.RotationComponent), 8 },
+		{ typeof(Ecs.Game.Components.TransformComponent), 9 },
+		{ typeof(Ecs.Game.Components.UidComponent), 10 },
+		{ typeof(InstantiateAddedListenerComponent), 11 },
+		{ typeof(LinkRemovedListenerComponent), 12 },
+		{ typeof(PositionAddedListenerComponent), 13 },
+		{ typeof(RotationAddedListenerComponent), 14 }
 	};
 
 	/// <summary>

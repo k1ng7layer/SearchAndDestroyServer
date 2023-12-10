@@ -1,7 +1,13 @@
-﻿namespace Services.PlayerRepository
+﻿using System.Collections.Generic;
+using Models;
+
+namespace Services.PlayerRepository
 {
     public interface IPlayerRepository
     {
-        void Configure(int playerNumber);
+        IReadOnlyDictionary<int, Player> Players { get; }
+        
+        void Add(Player player);
+        bool TryGet(int id, out Player player);
     }
 }

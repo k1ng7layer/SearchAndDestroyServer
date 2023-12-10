@@ -22,6 +22,10 @@ public partial class ActionEntity
 		{
 			IsDestroyed = true;
 		}
+		else if (component is Ecs.Action.Components.StartGameComponent StartGame)
+		{
+			IsStartGame = true;
+		}
 		#endif
 	}
 
