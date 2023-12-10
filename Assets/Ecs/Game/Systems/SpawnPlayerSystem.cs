@@ -52,7 +52,6 @@ namespace Ecs.Game.Systems
             playerEntity.IsInstantiate = true;
 
             NetworkServer.AddPlayerForConnection(conn, obj);
-
         }
     }
 }

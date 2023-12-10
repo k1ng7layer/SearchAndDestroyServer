@@ -6,11 +6,16 @@ namespace Ecs.Game.Systems
 {
     public class StartGameSystem : ReactiveSystem<GameEntity>
     {
+        private const int MaxPlayers = 1;
+        
         private readonly GameContext _game;
+        private readonly IGroup<GameEntity> _spawnedPlayerGroup;
 
         public StartGameSystem(GameContext game) : base(game)
         {
             _game = game;
+
+            _spawnedPlayerGroup = game.GetGroup(GameMatcher.AllOf(GameMatcher.Player));
         }
 
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context) =>
@@ -25,8 +30,22 @@ namespace Ecs.Game.Systems
         {
             foreach (var entity in entities)
             {
-                _game.ReplaceGameMode(EGameMode.Countdown);
+                if (AllSpawned())
+                    _game.ReplaceGameMode(EGameMode.Countdown);
             }
+        }
+
+        private bool AllSpawned()
+        {
+            int temp = 0;
+
+            foreach (var spawned in _spawnedPlayerGroup)
+            {
+                if (spawned.IsInstantiate)
+                    temp++;
+            }
+
+            return temp == MaxPlayers;
         }
     }
 }
