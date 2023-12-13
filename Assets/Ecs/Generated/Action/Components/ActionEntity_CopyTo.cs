@@ -26,6 +26,10 @@ public partial class ActionEntity
 		{
 			IsStartGame = true;
 		}
+		else if (component is Ecs.Action.Components.SpawnPlayerComponent SpawnPlayer)
+		{
+			CopySpawnPlayerTo(SpawnPlayer);
+		}
 		#endif
 	}
 

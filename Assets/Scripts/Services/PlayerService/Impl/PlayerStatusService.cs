@@ -26,7 +26,7 @@ namespace Services.PlayerService.Impl
         {
             _networkServerManager = networkServerManager;
             _playerRepository = playerRepository;
-           // _game = game;
+            // _game = game;
 
             //_players = game.GetGroup(GameMatcher.AllOf(GameMatcher.Player).NoneOf(GameMatcher.Destroyed));
         }
@@ -37,13 +37,13 @@ namespace Services.PlayerService.Impl
         public void Initialize()
         {
             _networkServerManager.RegisterMessageHandler<PlayerLoadedMessage>(OnPlayerLoadedMessage);
-            _networkServerManager.RegisterMessageHandler<SpawnPlayerMessage>(OnPlayerSpawnedMessage);
+            //_networkServerManager.RegisterMessageHandler<SpawnPlayerMessage>(OnPlayerSpawnedMessage);
         }
 
         public void Dispose()
         {
             _networkServerManager.UnRegisterMessageHandler<PlayerLoadedMessage>();
-            _networkServerManager.UnRegisterMessageHandler<SpawnPlayerMessage>();
+            //_networkServerManager.UnRegisterMessageHandler<SpawnPlayerMessage>();
         }
 
         private void OnPlayerLoadedMessage(
@@ -59,8 +59,6 @@ namespace Services.PlayerService.Impl
             _playerRepository.Add(player);
             
             PlayerLoaded?.Invoke(player);
-
-            NetworkServer.SpawnObjects();
 
             NetworkServer.SetClientReady(conn);
         }
@@ -79,6 +77,8 @@ namespace Services.PlayerService.Impl
             player.Ready = true;
             
             PlayerReady?.Invoke(player);
+            
+           //_action.CreateEntity().AddSpawnPlayer(id);
         }
 
         private void SpawnObjectsForPlayer()

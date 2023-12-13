@@ -18,9 +18,13 @@ public partial class GameEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is Ecs.Game.Components.GameModeComponent GameMode)
+		if (component is Ecs.Game.Components.GunnerComponent Gunner)
 		{
-			CopyGameModeTo(GameMode);
+			IsGunner = true;
+		}
+		else if (component is Ecs.Game.Components.HostileComponent Hostile)
+		{
+			IsHostile = true;
 		}
 		else if (component is Ecs.Game.Components.PrefabComponent Prefab)
 		{
@@ -41,6 +45,10 @@ public partial class GameEntity
 		else if (component is Ecs.Game.Components.DestroyedComponent Destroyed)
 		{
 			IsDestroyed = true;
+		}
+		else if (component is Ecs.Game.Components.GameModeComponent GameMode)
+		{
+			CopyGameModeTo(GameMode);
 		}
 		else if (component is Ecs.Game.Components.PlayerComponent Player)
 		{
