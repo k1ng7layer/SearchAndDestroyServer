@@ -15,7 +15,6 @@ namespace Ecs.Game.Systems
         public void Initialize()
         {
             _game.ReplaceGameMode(EGameMode.Preparing);
-            
         }
     }
 }

@@ -10,10 +10,10 @@ namespace Installers.Game.Ecs
         public override void InstallBindings()
         {
             Container.BindInterfacesAndSelfTo<InitializeGameSystem>().AsSingle();
-            //Container.BindInterfacesAndSelfTo<SpawnPlayerSystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<StartGameSystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<SpawnPlayerSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<WaitPlayersLoadedSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<SpawnPlayerSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<StartGameSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<StartCountdownSystem>().AsSingle();
         }
     }
 }
