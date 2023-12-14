@@ -35,6 +35,11 @@ namespace Ecs.Action.Systems
                 entity.IsDestroyed = true;
 
                 var connIndex = entity.SpawnPlayer.ConnectionIndex;
+                
+                //TODO:temp
+                if (!NetworkServer.connections.ContainsKey(connIndex))
+                    continue;
+                
                 var connection = NetworkServer.connections[connIndex];
                 
                 var prefab = _prefabsBase.Get("Player2");
