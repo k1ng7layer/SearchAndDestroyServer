@@ -18,13 +18,9 @@ public partial class GameEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is Ecs.Game.Components.GunnerComponent Gunner)
+		if (component is Ecs.Game.Components.InputComponent Input)
 		{
-			IsGunner = true;
-		}
-		else if (component is Ecs.Game.Components.HostileComponent Hostile)
-		{
-			IsHostile = true;
+			CopyInputTo(Input);
 		}
 		else if (component is Ecs.Game.Components.PrefabComponent Prefab)
 		{
@@ -41,6 +37,10 @@ public partial class GameEntity
 		else if (component is Ecs.Game.Components.UidComponent Uid)
 		{
 			CopyUidTo(Uid);
+		}
+		else if (component is Ecs.Game.Components.HostileComponent Hostile)
+		{
+			IsHostile = true;
 		}
 		else if (component is Ecs.Game.Components.DestroyedComponent Destroyed)
 		{
@@ -70,6 +70,18 @@ public partial class GameEntity
 		{
 			CopyLinkTo(Link);
 		}
+		else if (component is Ecs.Game.Components.GunnerComponent Gunner)
+		{
+			IsGunner = true;
+		}
+		else if (component is Ecs.Game.Components.MoveDirectionComponent MoveDirection)
+		{
+			CopyMoveDirectionTo(MoveDirection);
+		}
+		else if (component is InputAddedListenerComponent InputAddedListener)
+		{
+			CopyInputAddedListenerTo(InputAddedListener);
+		}
 		else if (component is InstantiateAddedListenerComponent InstantiateAddedListener)
 		{
 			CopyInstantiateAddedListenerTo(InstantiateAddedListener);
@@ -85,6 +97,10 @@ public partial class GameEntity
 		else if (component is LinkRemovedListenerComponent LinkRemovedListener)
 		{
 			CopyLinkRemovedListenerTo(LinkRemovedListener);
+		}
+		else if (component is MoveDirectionAddedListenerComponent MoveDirectionAddedListener)
+		{
+			CopyMoveDirectionAddedListenerTo(MoveDirectionAddedListener);
 		}
 		#endif
 	}
