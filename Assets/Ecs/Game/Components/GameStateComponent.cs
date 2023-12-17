@@ -5,8 +5,8 @@ namespace Ecs.Game.Components
 {
     [Game]
     [Unique]
-    public class GameModeComponent : IComponent
+    public class GameStateComponent : IComponent
     {
-        public EGameMode Value;
+        public EGameState Value;
     }
 }

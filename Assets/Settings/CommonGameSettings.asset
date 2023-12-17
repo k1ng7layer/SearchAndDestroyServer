@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e320db268a24ca1a12f1e1e057eca50, type: 3}
-  m_Name: GameSettingsInstaller
+  m_Script: {fileID: 11500000, guid: a44c45bb645d4c1a9384917181b18ccf, type: 3}
+  m_Name: CommonGameSettings
   m_EditorClassIdentifier: 
-  _prefabsBase: {fileID: 11400000, guid: b152cdeaa873ea94f9a502eef71cb1c3, type: 2}
-  _commonGameSettings: {fileID: 11400000, guid: 1634207eccf0c0f47928b4787a3af7ca, type: 2}
+  _preparingTime: 20

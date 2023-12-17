@@ -7,12 +7,8 @@
 //		the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public partial interface IGameModeEntity
+[JCMG.EntitasRedux.DontGenerate(false)]
+public sealed class GameCountdownAddedListenerComponent : JCMG.EntitasRedux.IComponent
 {
-	Ecs.Game.Components.GameModeComponent GameMode { get; }
-	bool HasGameMode { get; }
-
-	void AddGameMode(Utils.EGameMode newValue);
-	void ReplaceGameMode(Utils.EGameMode newValue);
-	void RemoveGameMode();
+	public System.Collections.Generic.List<IGameCountdownAddedListener> value;
 }

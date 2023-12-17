@@ -7,6 +7,7 @@ using Services.PlayerRepository.Impl;
 using Services.PlayerService.Impl;
 using Services.SceneLoading;
 using Services.SceneLoading.Impls;
+using Services.TimeProvider.Impl;
 using StateMachine;
 using StateMachine.States.Impl;
 using UnityEngine;
@@ -39,6 +40,7 @@ namespace Installers.Project
             Container.Bind<ISceneLoadingManager>().To<SceneLoadingManager>().AsSingle();
             Container.BindInterfacesAndSelfTo<MirrorNetworkServer>()
                 .FromComponentInNewPrefab(_networkServer).AsSingle();
+            Container.BindInterfacesAndSelfTo<TimeProvider>().AsSingle();
         }
     }
 }

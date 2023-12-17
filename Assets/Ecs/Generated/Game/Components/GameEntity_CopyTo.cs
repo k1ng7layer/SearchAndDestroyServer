@@ -18,7 +18,11 @@ public partial class GameEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is Ecs.Game.Components.InputRotationComponent InputRotation)
+		if (component is Ecs.Game.Components.RotationVelocityComponent RotationVelocity)
+		{
+			CopyRotationVelocityTo(RotationVelocity);
+		}
+		else if (component is Ecs.Game.Components.InputRotationComponent InputRotation)
 		{
 			CopyInputRotationTo(InputRotation);
 		}
@@ -54,9 +58,9 @@ public partial class GameEntity
 		{
 			IsDestroyed = true;
 		}
-		else if (component is Ecs.Game.Components.GameModeComponent GameMode)
+		else if (component is Ecs.Game.Components.GameStateComponent GameState)
 		{
-			CopyGameModeTo(GameMode);
+			CopyGameStateTo(GameState);
 		}
 		else if (component is Ecs.Game.Components.PlayerComponent Player)
 		{
@@ -82,9 +86,9 @@ public partial class GameEntity
 		{
 			IsGunner = true;
 		}
-		else if (component is Ecs.Game.Components.RotationVelocityComponent RotationVelocity)
+		else if (component is Ecs.Game.Components.GameCountdownComponent GameCountdown)
 		{
-			CopyRotationVelocityTo(RotationVelocity);
+			CopyGameCountdownTo(GameCountdown);
 		}
 		else if (component is InputAddedListenerComponent InputAddedListener)
 		{
@@ -109,6 +113,10 @@ public partial class GameEntity
 		else if (component is LinkRemovedListenerComponent LinkRemovedListener)
 		{
 			CopyLinkRemovedListenerTo(LinkRemovedListener);
+		}
+		else if (component is GameCountdownAddedListenerComponent GameCountdownAddedListener)
+		{
+			CopyGameCountdownAddedListenerTo(GameCountdownAddedListener);
 		}
 		#endif
 	}

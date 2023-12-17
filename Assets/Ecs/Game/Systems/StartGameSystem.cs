@@ -23,7 +23,7 @@ namespace Ecs.Game.Systems
 
         protected override bool Filter(GameEntity entity) => 
             entity.IsInstantiate 
-            && _game.GameMode.Value == EGameMode.Preparing 
+            && _game.GameState.Value == EGameState.Preparing 
             && !entity.IsDestroyed;
 
         protected override void Execute(List<GameEntity> entities)
@@ -31,7 +31,7 @@ namespace Ecs.Game.Systems
             foreach (var entity in entities)
             {
                 if (AllSpawned())
-                    _game.ReplaceGameMode(EGameMode.Countdown);
+                    _game.ReplaceGameState(EGameState.Countdown);
             }
         }
 

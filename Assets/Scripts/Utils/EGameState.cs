@@ -1,7 +1,8 @@
 ﻿namespace Utils
 {
-    public enum EGameMode
+    public enum EGameState : byte
     {
+        Default,
         Preparing,
         Countdown
     }
