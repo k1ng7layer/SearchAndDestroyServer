@@ -4,6 +4,7 @@ using Ecs.Game.Extensions;
 using Ecs.Views.Linkable;
 using JCMG.EntitasRedux;
 using Mirror;
+using Services.LevelObjectProvider;
 using UnityEngine;
 
 namespace Ecs.Action.Systems
@@ -12,15 +13,18 @@ namespace Ecs.Action.Systems
     {
         private readonly IPrefabsBase _prefabsBase;
         private readonly GameContext _game;
+        private readonly ILevelObjectsHolder _levelObjectsHolder;
 
         public SpawnPlayerSystem(
             ActionContext action, 
             IPrefabsBase prefabsBase,
-            GameContext game
+            GameContext game,
+            ILevelObjectsHolder levelObjectsHolder
         ) : base(action)
         {
             _prefabsBase = prefabsBase;
             _game = game;
+            _levelObjectsHolder = levelObjectsHolder;
         }
 
         protected override ICollector<ActionEntity> GetTrigger(IContext<ActionEntity> context) =>
@@ -46,7 +50,8 @@ namespace Ecs.Action.Systems
 
                 var obj = Object.Instantiate(prefab.gameObject);
 
-                var playerEntity = _game.CreatePlayer(connection.connectionId, Vector3.zero, Quaternion.identity);
+                var spawnPos = _levelObjectsHolder.CommonObjectsHolder.PlayerSpawnTransform;
+                var playerEntity = _game.CreatePlayer(connection.connectionId, spawnPos.position, spawnPos.rotation);
             
                 var view = obj.GetComponent<ILinkableView>();
             
