@@ -18,17 +18,17 @@ public partial class GameEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is Ecs.Game.Components.GunnerComponent Gunner)
+		if (component is Ecs.Game.Components.InputRotationComponent InputRotation)
 		{
-			IsGunner = true;
-		}
-		else if (component is Ecs.Game.Components.HostileComponent Hostile)
-		{
-			IsHostile = true;
+			CopyInputRotationTo(InputRotation);
 		}
 		else if (component is Ecs.Game.Components.PrefabComponent Prefab)
 		{
 			CopyPrefabTo(Prefab);
+		}
+		else if (component is Ecs.Game.Components.InputComponent Input)
+		{
+			CopyInputTo(Input);
 		}
 		else if (component is Ecs.Game.Components.InstantiateComponent Instantiate)
 		{
@@ -38,9 +38,17 @@ public partial class GameEntity
 		{
 			CopyConnectionIdTo(ConnectionId);
 		}
+		else if (component is Ecs.Game.Components.MoveDirectionComponent MoveDirection)
+		{
+			CopyMoveDirectionTo(MoveDirection);
+		}
 		else if (component is Ecs.Game.Components.UidComponent Uid)
 		{
 			CopyUidTo(Uid);
+		}
+		else if (component is Ecs.Game.Components.HostileComponent Hostile)
+		{
+			IsHostile = true;
 		}
 		else if (component is Ecs.Game.Components.DestroyedComponent Destroyed)
 		{
@@ -70,9 +78,25 @@ public partial class GameEntity
 		{
 			CopyLinkTo(Link);
 		}
+		else if (component is Ecs.Game.Components.GunnerComponent Gunner)
+		{
+			IsGunner = true;
+		}
+		else if (component is Ecs.Game.Components.RotationVelocityComponent RotationVelocity)
+		{
+			CopyRotationVelocityTo(RotationVelocity);
+		}
+		else if (component is InputAddedListenerComponent InputAddedListener)
+		{
+			CopyInputAddedListenerTo(InputAddedListener);
+		}
 		else if (component is InstantiateAddedListenerComponent InstantiateAddedListener)
 		{
 			CopyInstantiateAddedListenerTo(InstantiateAddedListener);
+		}
+		else if (component is MoveDirectionAddedListenerComponent MoveDirectionAddedListener)
+		{
+			CopyMoveDirectionAddedListenerTo(MoveDirectionAddedListener);
 		}
 		else if (component is RotationAddedListenerComponent RotationAddedListener)
 		{

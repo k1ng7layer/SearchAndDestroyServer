@@ -18,17 +18,17 @@ public partial class ActionEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is Ecs.Game.Components.DestroyedComponent Destroyed)
+		if (component is Ecs.Action.Components.SpawnPlayerComponent SpawnPlayer)
 		{
-			IsDestroyed = true;
+			CopySpawnPlayerTo(SpawnPlayer);
 		}
 		else if (component is Ecs.Action.Components.StartGameComponent StartGame)
 		{
 			IsStartGame = true;
 		}
-		else if (component is Ecs.Action.Components.SpawnPlayerComponent SpawnPlayer)
+		else if (component is Ecs.Game.Components.DestroyedComponent Destroyed)
 		{
-			CopySpawnPlayerTo(SpawnPlayer);
+			IsDestroyed = true;
 		}
 		#endif
 	}
