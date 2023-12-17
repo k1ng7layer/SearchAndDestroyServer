@@ -4,7 +4,7 @@ using Zenject;
 
 namespace Ecs.Game.Systems
 {
-    public class MoveDirectionSystem : IFixedSystem
+    public class MoveDirectionSystem : IUpdateSystem
     {
         private static readonly ListPool<GameEntity> EntityPool = ListPool<GameEntity>.Instance;
 
@@ -15,7 +15,7 @@ namespace Ecs.Game.Systems
             _movableGroup = game.GetGroup(GameMatcher.Input);
         }
         
-        public void Fixed()
+        public void Update()
         {
             var movables = EntityPool.Spawn();
             _movableGroup.GetEntities(movables);

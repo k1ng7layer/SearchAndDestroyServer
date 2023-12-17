@@ -18,13 +18,17 @@ public partial class GameEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is Ecs.Game.Components.InputComponent Input)
+		if (component is Ecs.Game.Components.InputRotationComponent InputRotation)
 		{
-			CopyInputTo(Input);
+			CopyInputRotationTo(InputRotation);
 		}
 		else if (component is Ecs.Game.Components.PrefabComponent Prefab)
 		{
 			CopyPrefabTo(Prefab);
+		}
+		else if (component is Ecs.Game.Components.InputComponent Input)
+		{
+			CopyInputTo(Input);
 		}
 		else if (component is Ecs.Game.Components.InstantiateComponent Instantiate)
 		{
@@ -33,6 +37,10 @@ public partial class GameEntity
 		else if (component is Ecs.Game.Components.ConnectionIdComponent ConnectionId)
 		{
 			CopyConnectionIdTo(ConnectionId);
+		}
+		else if (component is Ecs.Game.Components.MoveDirectionComponent MoveDirection)
+		{
+			CopyMoveDirectionTo(MoveDirection);
 		}
 		else if (component is Ecs.Game.Components.UidComponent Uid)
 		{
@@ -74,9 +82,9 @@ public partial class GameEntity
 		{
 			IsGunner = true;
 		}
-		else if (component is Ecs.Game.Components.MoveDirectionComponent MoveDirection)
+		else if (component is Ecs.Game.Components.RotationVelocityComponent RotationVelocity)
 		{
-			CopyMoveDirectionTo(MoveDirection);
+			CopyRotationVelocityTo(RotationVelocity);
 		}
 		else if (component is InputAddedListenerComponent InputAddedListener)
 		{
@@ -85,6 +93,10 @@ public partial class GameEntity
 		else if (component is InstantiateAddedListenerComponent InstantiateAddedListener)
 		{
 			CopyInstantiateAddedListenerTo(InstantiateAddedListener);
+		}
+		else if (component is MoveDirectionAddedListenerComponent MoveDirectionAddedListener)
+		{
+			CopyMoveDirectionAddedListenerTo(MoveDirectionAddedListener);
 		}
 		else if (component is RotationAddedListenerComponent RotationAddedListener)
 		{
@@ -97,10 +109,6 @@ public partial class GameEntity
 		else if (component is LinkRemovedListenerComponent LinkRemovedListener)
 		{
 			CopyLinkRemovedListenerTo(LinkRemovedListener);
-		}
-		else if (component is MoveDirectionAddedListenerComponent MoveDirectionAddedListener)
-		{
-			CopyMoveDirectionAddedListenerTo(MoveDirectionAddedListener);
 		}
 		#endif
 	}

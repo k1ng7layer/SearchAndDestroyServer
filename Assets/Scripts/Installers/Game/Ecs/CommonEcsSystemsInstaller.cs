@@ -16,6 +16,9 @@ namespace Installers.Game.Ecs
             Container.BindInterfacesAndSelfTo<StartGameSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<StartCountdownSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<MoveDirectionSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<PlayerInputRotationSystem>().AsSingle();
+            
+            BindServices();
         }
 
         private void BindServices()

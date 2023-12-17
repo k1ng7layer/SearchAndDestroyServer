@@ -14,7 +14,7 @@ namespace Ecs.Game.Extensions
             var entity = context.CreateEntity();
 
             entity.IsPlayer = true;
-            //entity.AddConnectionId(netId);
+            entity.AddConnectionId(netId);
             entity.AddUid(UidGenerator.Next());
             entity.AddPosition(position);
             entity.AddRotation(rotation);

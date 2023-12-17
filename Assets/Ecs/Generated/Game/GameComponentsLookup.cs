@@ -19,23 +19,25 @@ public static class GameComponentsLookup
 	public const int Gunner = 3;
 	public const int Hostile = 4;
 	public const int Input = 5;
-	public const int Instantiate = 6;
-	public const int Link = 7;
-	public const int MoveDirection = 8;
-	public const int Player = 9;
-	public const int Position = 10;
-	public const int Prefab = 11;
-	public const int Rotation = 12;
-	public const int Transform = 13;
-	public const int Uid = 14;
-	public const int InputAddedListener = 15;
-	public const int InstantiateAddedListener = 16;
-	public const int LinkRemovedListener = 17;
-	public const int MoveDirectionAddedListener = 18;
-	public const int PositionAddedListener = 19;
-	public const int RotationAddedListener = 20;
+	public const int InputRotation = 6;
+	public const int Instantiate = 7;
+	public const int Link = 8;
+	public const int MoveDirection = 9;
+	public const int Player = 10;
+	public const int Position = 11;
+	public const int Prefab = 12;
+	public const int Rotation = 13;
+	public const int RotationVelocity = 14;
+	public const int Transform = 15;
+	public const int Uid = 16;
+	public const int InputAddedListener = 17;
+	public const int InstantiateAddedListener = 18;
+	public const int LinkRemovedListener = 19;
+	public const int MoveDirectionAddedListener = 20;
+	public const int PositionAddedListener = 21;
+	public const int RotationAddedListener = 22;
 
-	public const int TotalComponents = 21;
+	public const int TotalComponents = 23;
 
 	public static readonly string[] ComponentNames =
 	{
@@ -45,6 +47,7 @@ public static class GameComponentsLookup
 		"Gunner",
 		"Hostile",
 		"Input",
+		"InputRotation",
 		"Instantiate",
 		"Link",
 		"MoveDirection",
@@ -52,6 +55,7 @@ public static class GameComponentsLookup
 		"Position",
 		"Prefab",
 		"Rotation",
+		"RotationVelocity",
 		"Transform",
 		"Uid",
 		"InputAddedListener",
@@ -70,6 +74,7 @@ public static class GameComponentsLookup
 		typeof(Ecs.Game.Components.GunnerComponent),
 		typeof(Ecs.Game.Components.HostileComponent),
 		typeof(Ecs.Game.Components.InputComponent),
+		typeof(Ecs.Game.Components.InputRotationComponent),
 		typeof(Ecs.Game.Components.InstantiateComponent),
 		typeof(Ecs.Game.Components.LinkComponent),
 		typeof(Ecs.Game.Components.MoveDirectionComponent),
@@ -77,6 +82,7 @@ public static class GameComponentsLookup
 		typeof(Ecs.Game.Components.PositionComponent),
 		typeof(Ecs.Game.Components.PrefabComponent),
 		typeof(Ecs.Game.Components.RotationComponent),
+		typeof(Ecs.Game.Components.RotationVelocityComponent),
 		typeof(Ecs.Game.Components.TransformComponent),
 		typeof(Ecs.Game.Components.UidComponent),
 		typeof(InputAddedListenerComponent),
@@ -95,21 +101,23 @@ public static class GameComponentsLookup
 		{ typeof(Ecs.Game.Components.GunnerComponent), 3 },
 		{ typeof(Ecs.Game.Components.HostileComponent), 4 },
 		{ typeof(Ecs.Game.Components.InputComponent), 5 },
-		{ typeof(Ecs.Game.Components.InstantiateComponent), 6 },
-		{ typeof(Ecs.Game.Components.LinkComponent), 7 },
-		{ typeof(Ecs.Game.Components.MoveDirectionComponent), 8 },
-		{ typeof(Ecs.Game.Components.PlayerComponent), 9 },
-		{ typeof(Ecs.Game.Components.PositionComponent), 10 },
-		{ typeof(Ecs.Game.Components.PrefabComponent), 11 },
-		{ typeof(Ecs.Game.Components.RotationComponent), 12 },
-		{ typeof(Ecs.Game.Components.TransformComponent), 13 },
-		{ typeof(Ecs.Game.Components.UidComponent), 14 },
-		{ typeof(InputAddedListenerComponent), 15 },
-		{ typeof(InstantiateAddedListenerComponent), 16 },
-		{ typeof(LinkRemovedListenerComponent), 17 },
-		{ typeof(MoveDirectionAddedListenerComponent), 18 },
-		{ typeof(PositionAddedListenerComponent), 19 },
-		{ typeof(RotationAddedListenerComponent), 20 }
+		{ typeof(Ecs.Game.Components.InputRotationComponent), 6 },
+		{ typeof(Ecs.Game.Components.InstantiateComponent), 7 },
+		{ typeof(Ecs.Game.Components.LinkComponent), 8 },
+		{ typeof(Ecs.Game.Components.MoveDirectionComponent), 9 },
+		{ typeof(Ecs.Game.Components.PlayerComponent), 10 },
+		{ typeof(Ecs.Game.Components.PositionComponent), 11 },
+		{ typeof(Ecs.Game.Components.PrefabComponent), 12 },
+		{ typeof(Ecs.Game.Components.RotationComponent), 13 },
+		{ typeof(Ecs.Game.Components.RotationVelocityComponent), 14 },
+		{ typeof(Ecs.Game.Components.TransformComponent), 15 },
+		{ typeof(Ecs.Game.Components.UidComponent), 16 },
+		{ typeof(InputAddedListenerComponent), 17 },
+		{ typeof(InstantiateAddedListenerComponent), 18 },
+		{ typeof(LinkRemovedListenerComponent), 19 },
+		{ typeof(MoveDirectionAddedListenerComponent), 20 },
+		{ typeof(PositionAddedListenerComponent), 21 },
+		{ typeof(RotationAddedListenerComponent), 22 }
 	};
 
 	/// <summary>

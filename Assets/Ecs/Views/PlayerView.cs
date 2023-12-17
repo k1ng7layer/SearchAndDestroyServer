@@ -22,7 +22,7 @@ namespace Ecs.Views
 
         public void OnMoveDirectionAdded(GameEntity entity, Vector3 value)
         {
-            _characterController.Move(value * Time.fixedDeltaTime);
+            _characterController.Move(value * 3f* Time.deltaTime);
         }
     }
 }
