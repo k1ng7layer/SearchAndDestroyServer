@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _prefabsBase: {fileID: 11400000, guid: b152cdeaa873ea94f9a502eef71cb1c3, type: 2}
   _commonGameSettings: {fileID: 11400000, guid: 1634207eccf0c0f47928b4787a3af7ca, type: 2}
+  _npcSettings: {fileID: 11400000, guid: 9085dd7df553c6349bbde1326dd8109a, type: 2}

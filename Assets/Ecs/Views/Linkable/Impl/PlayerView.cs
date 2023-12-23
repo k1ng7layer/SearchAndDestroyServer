@@ -1,10 +1,7 @@
-﻿using Ecs.Views.Linkable.Impl;
-using JCMG.EntitasRedux;
-using Mirror;
+﻿using JCMG.EntitasRedux;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace Ecs.Views
+namespace Ecs.Views.Linkable.Impl
 {
     public class PlayerView : NetworkObjectView, 
         IMoveDirectionAddedListener

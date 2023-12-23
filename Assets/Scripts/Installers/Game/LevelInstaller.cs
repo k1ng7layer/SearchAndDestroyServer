@@ -1,6 +1,7 @@
 ﻿using Services.LevelObjectProvider;
 using Services.LevelObjectProvider.Impl;
 using UnityEngine;
+using UnityEngine.AI;
 using Zenject;
 
 namespace Installers.Game

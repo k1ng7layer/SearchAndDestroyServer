@@ -22,9 +22,17 @@ public partial class ActionEntity
 		{
 			CopySpawnPlayerTo(SpawnPlayer);
 		}
+		else if (component is Ecs.Action.Components.SpawnNpcComponent SpawnNpc)
+		{
+			CopySpawnNpcTo(SpawnNpc);
+		}
 		else if (component is Ecs.Action.Components.StartGameComponent StartGame)
 		{
 			IsStartGame = true;
+		}
+		else if (component is Ecs.Action.Components.ChooseDestinationComponent ChooseDestination)
+		{
+			CopyChooseDestinationTo(ChooseDestination);
 		}
 		else if (component is Ecs.Game.Components.DestroyedComponent Destroyed)
 		{

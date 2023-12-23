@@ -11,6 +11,8 @@ public sealed class GameEventSystems : Feature
 {
 	public GameEventSystems(Contexts contexts)
 	{
+		Add(new DestinationAddedEventSystem(contexts)); // priority: 0
+		Add(new DestinationRemovedEventSystem(contexts)); // priority: 0
 		Add(new GameCountdownAddedEventSystem(contexts)); // priority: 0
 		Add(new InputAddedEventSystem(contexts)); // priority: 0
 		Add(new InstantiateAddedEventSystem(contexts)); // priority: 0

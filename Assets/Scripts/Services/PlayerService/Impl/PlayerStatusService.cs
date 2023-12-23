@@ -6,6 +6,7 @@ using Models;
 using NetworkMessages;
 using Services.Network;
 using Services.PlayerRepository;
+using UnityEngine;
 using Zenject;
 
 namespace Services.PlayerService.Impl
@@ -37,7 +38,7 @@ namespace Services.PlayerService.Impl
         public void Initialize()
         {
             _networkServerManager.RegisterMessageHandler<PlayerLoadedMessage>(OnPlayerLoadedMessage);
-            //_networkServerManager.RegisterMessageHandler<SpawnPlayerMessage>(OnPlayerSpawnedMessage);
+            _networkServerManager.RegisterMessageHandler<PlayerSpawnedMessage>(OnPlayerSpawnedMessage);
         }
 
         public void Dispose()
@@ -61,24 +62,16 @@ namespace Services.PlayerService.Impl
             PlayerLoaded?.Invoke(player);
 
             NetworkServer.SetClientReady(conn);
+            Debug.Log($"OnPlayerLoadedMessage, ready: {conn.isReady}");
+            NetworkServer.SpawnObjects();
         }
         
         private void OnPlayerSpawnedMessage(
             NetworkConnectionToClient conn, 
-            SpawnPlayerMessage _, 
+            PlayerSpawnedMessage _, 
             int id)
         {
-
-            var hasPlayer = _playerRepository.TryGet(conn.connectionId, out var player);
-            
-            if (!hasPlayer)
-                return;
-
-            player.Ready = true;
-            
-            PlayerReady?.Invoke(player);
-            
-           //_action.CreateEntity().AddSpawnPlayer(id);
+            NetworkServer.SpawnObjects();
         }
 
         private void SpawnObjectsForPlayer()

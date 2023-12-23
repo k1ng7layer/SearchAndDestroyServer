@@ -48,10 +48,14 @@ namespace Ecs.Action.Systems
                 
                 var prefab = _prefabsBase.Get("Player2");
 
-                var obj = Object.Instantiate(prefab.gameObject);
-
                 var spawnPos = _levelObjectsHolder.CommonObjectsHolder.PlayerSpawnTransform;
-                var playerEntity = _game.CreatePlayer(connection.connectionId, spawnPos.position, spawnPos.rotation);
+
+                var position = spawnPos.position;
+                var rotation = spawnPos.rotation;
+                
+                var obj = Object.Instantiate(prefab.gameObject, position, rotation);
+
+                var playerEntity = _game.CreatePlayer(connection.connectionId, position, rotation);
             
                 var view = obj.GetComponent<ILinkableView>();
             
