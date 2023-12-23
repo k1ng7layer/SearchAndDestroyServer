@@ -4,6 +4,7 @@ using Ecs.Uid;
 using Ecs.Views.Linkable;
 using JCMG.EntitasRedux;
 using Mirror;
+using Services.Network;
 using UnityEngine;
 
 namespace Ecs.Action.Systems
@@ -13,12 +14,17 @@ namespace Ecs.Action.Systems
         private readonly ActionContext _action;
         private readonly GameContext _game;
         private readonly IPrefabsBase _prefabsBase;
+        private readonly INetworkServerManager _serverManager;
 
-        public SpawnNpcSystem(ActionContext action, GameContext game, IPrefabsBase prefabsBase) : base(action)
+        public SpawnNpcSystem(ActionContext action, 
+            GameContext game, 
+            IPrefabsBase prefabsBase,
+            INetworkServerManager serverManager) : base(action)
         {
             _action = action;
             _game = game;
             _prefabsBase = prefabsBase;
+            _serverManager = serverManager;
         }
 
         protected override ICollector<ActionEntity> GetTrigger(IContext<ActionEntity> context) =>
@@ -44,6 +50,8 @@ namespace Ecs.Action.Systems
                 npcEntity.AddUid(uid);
 
                 var npcGO = Object.Instantiate(prefab.gameObject, spawnPosition, spawnRotation);
+                
+                NetworkServer.Spawn(npcGO);
                 
                 var view = npcGO.GetComponent<ILinkableView>();
             
