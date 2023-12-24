@@ -25,9 +25,13 @@ namespace Ecs.Game.Systems
             _game.ReplaceGameState(EGameState.Preparing);
             
             var objectsHolder = _levelObjectsHolder.CommonObjectsHolder;
-            var npcSpawnTransform = objectsHolder.NpcSpawnTransforms[0];
+
+            foreach (var spawnTransform in objectsHolder.NpcSpawnTransforms)
+            {
+                _action.CreateEntity().AddSpawnNpc(spawnTransform.position, spawnTransform.rotation);
+            }
             
-            _action.CreateEntity().AddSpawnNpc(npcSpawnTransform.position, npcSpawnTransform.rotation);
+            //_action.CreateEntity().AddSpawnNpc(objectsHolder.NpcSpawnTransforms[0].position, objectsHolder.NpcSpawnTransforms[0].rotation);
         }
     }
 }

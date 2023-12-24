@@ -25,6 +25,9 @@ namespace Ecs.Game.Systems
 
             foreach (var player in players)
             {
+                if (player.IsDestroyed)
+                    continue;
+                
                 var inputRotation = player.InputRotation.Value;
                 
                 if (!player.HasRotationVelocity)
