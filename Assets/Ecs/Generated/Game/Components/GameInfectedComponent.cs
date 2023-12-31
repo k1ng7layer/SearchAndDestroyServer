@@ -9,31 +9,42 @@
 //------------------------------------------------------------------------------
 public partial class GameEntity
 {
-	static readonly Ecs.Action.Components.InfectedComponent InfectedComponent = new Ecs.Action.Components.InfectedComponent();
+	public Ecs.Action.Components.InfectedComponent Infected { get { return (Ecs.Action.Components.InfectedComponent)GetComponent(GameComponentsLookup.Infected); } }
+	public bool HasInfected { get { return HasComponent(GameComponentsLookup.Infected); } }
 
-	public bool IsInfected
+	public void AddInfected(Ecs.Uid.Uid newOwner)
 	{
-		get { return HasComponent(GameComponentsLookup.Infected); }
-		set
-		{
-			if (value != IsInfected)
-			{
-				var index = GameComponentsLookup.Infected;
-				if (value)
-				{
-					var componentPool = GetComponentPool(index);
-					var component = componentPool.Count > 0
-							? componentPool.Pop()
-							: InfectedComponent;
+		var index = GameComponentsLookup.Infected;
+		var component = (Ecs.Action.Components.InfectedComponent)CreateComponent(index, typeof(Ecs.Action.Components.InfectedComponent));
+		#if !ENTITAS_REDUX_NO_IMPL
+		component.Owner = newOwner;
+		#endif
+		AddComponent(index, component);
+	}
 
-					AddComponent(index, component);
-				}
-				else
-				{
-					RemoveComponent(index);
-				}
-			}
-		}
+	public void ReplaceInfected(Ecs.Uid.Uid newOwner)
+	{
+		var index = GameComponentsLookup.Infected;
+		var component = (Ecs.Action.Components.InfectedComponent)CreateComponent(index, typeof(Ecs.Action.Components.InfectedComponent));
+		#if !ENTITAS_REDUX_NO_IMPL
+		component.Owner = newOwner;
+		#endif
+		ReplaceComponent(index, component);
+	}
+
+	public void CopyInfectedTo(Ecs.Action.Components.InfectedComponent copyComponent)
+	{
+		var index = GameComponentsLookup.Infected;
+		var component = (Ecs.Action.Components.InfectedComponent)CreateComponent(index, typeof(Ecs.Action.Components.InfectedComponent));
+		#if !ENTITAS_REDUX_NO_IMPL
+		component.Owner = copyComponent.Owner;
+		#endif
+		ReplaceComponent(index, component);
+	}
+
+	public void RemoveInfected()
+	{
+		RemoveComponent(GameComponentsLookup.Infected);
 	}
 }
 

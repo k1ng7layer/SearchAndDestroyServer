@@ -43,23 +43,25 @@ namespace Ecs.Action.Systems
                 var spawnRotation = entity.SpawnNpc.Rotation;
                 var npcEntity = _game.CreateEntity();
                 var uid = UidGenerator.Next();
+                var npcGO = Object.Instantiate(prefab.gameObject, spawnPosition, spawnRotation);
+                var view = npcGO.GetComponent<ILinkableView>();
+                var identity = npcGO.GetComponent<NetworkIdentity>();
                 
                 npcEntity.IsNpc = true;
                 npcEntity.AddPosition(spawnPosition);
                 npcEntity.AddRotation(spawnRotation);
                 npcEntity.AddUid(uid);
-
-                var npcGO = Object.Instantiate(prefab.gameObject, spawnPosition, spawnRotation);
-                
-                NetworkServer.Spawn(npcGO);
-                
-                var view = npcGO.GetComponent<ILinkableView>();
-            
                 npcEntity.AddLink(view);
             
                 view.Link(npcEntity, _game);
-
+                
+                NetworkServer.Spawn(npcGO);
+                
+                
+                npcEntity.AddNetworkId(identity.netId);
+                
                 npcEntity.IsInstantiate = true;
+                npcEntity.IsAi = true;
                 
                 _action.CreateEntity().AddChooseDestination(uid);
             }

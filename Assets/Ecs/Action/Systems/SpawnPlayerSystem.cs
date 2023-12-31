@@ -2,6 +2,7 @@
 using Db.Prefabs;
 using Ecs.Game.Extensions;
 using Ecs.Views.Linkable;
+using Ecs.Views.Linkable.Impl;
 using JCMG.EntitasRedux;
 using Mirror;
 using Services.LevelObjectProvider;
@@ -66,6 +67,11 @@ namespace Ecs.Action.Systems
                 playerEntity.IsInstantiate = true;
                 
                 NetworkServer.AddPlayerForConnection(connection, obj);
+                
+                var playerView = (PlayerView)view;
+                var identity = playerView.GetComponent<NetworkIdentity>();
+            
+                playerEntity.AddNetworkId(identity.netId);
             }
         }
     }

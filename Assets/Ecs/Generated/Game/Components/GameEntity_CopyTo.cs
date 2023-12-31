@@ -20,7 +20,19 @@ public partial class GameEntity
 		#if !ENTITAS_REDUX_NO_IMPL
 		if (component is Ecs.Action.Components.InfectedComponent Infected)
 		{
-			IsInfected = true;
+			CopyInfectedTo(Infected);
+		}
+		else if (component is Ecs.Game.Components.AiComponent Ai)
+		{
+			IsAi = true;
+		}
+		else if (component is Ecs.Game.Components.NetworkIdComponent NetworkId)
+		{
+			CopyNetworkIdTo(NetworkId);
+		}
+		else if (component is Ecs.Game.Components.TargetComponent Target)
+		{
+			CopyTargetTo(Target);
 		}
 		else if (component is Ecs.Game.Components.ControlStateComponent ControlState)
 		{
@@ -106,6 +118,22 @@ public partial class GameEntity
 		{
 			CopyGameCountdownTo(GameCountdown);
 		}
+		else if (component is Ecs.Game.Components.OwnerComponent Owner)
+		{
+			CopyOwnerTo(Owner);
+		}
+		else if (component is Ecs.Game.Components.AttachedComponent Attached)
+		{
+			CopyAttachedTo(Attached);
+		}
+		else if (component is AiAddedListenerComponent AiAddedListener)
+		{
+			CopyAiAddedListenerTo(AiAddedListener);
+		}
+		else if (component is AiRemovedListenerComponent AiRemovedListener)
+		{
+			CopyAiRemovedListenerTo(AiRemovedListener);
+		}
 		else if (component is InputAddedListenerComponent InputAddedListener)
 		{
 			CopyInputAddedListenerTo(InputAddedListener);
@@ -141,6 +169,14 @@ public partial class GameEntity
 		else if (component is GameCountdownAddedListenerComponent GameCountdownAddedListener)
 		{
 			CopyGameCountdownAddedListenerTo(GameCountdownAddedListener);
+		}
+		else if (component is AttachedAddedListenerComponent AttachedAddedListener)
+		{
+			CopyAttachedAddedListenerTo(AttachedAddedListener);
+		}
+		else if (component is AttachedRemovedListenerComponent AttachedRemovedListener)
+		{
+			CopyAttachedRemovedListenerTo(AttachedRemovedListener);
 		}
 		#endif
 	}

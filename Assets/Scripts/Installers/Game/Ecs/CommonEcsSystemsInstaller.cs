@@ -24,6 +24,8 @@ namespace Installers.Game.Ecs
             Container.BindInterfacesAndSelfTo<SpawnNpcSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<ChooseDestinationSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<CheckDestinationSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<InfectNpcSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<AttachPlayerToNpcSystem>().AsSingle();
             
             BindServices();
         }

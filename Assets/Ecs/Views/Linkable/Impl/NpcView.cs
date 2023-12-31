@@ -6,7 +6,10 @@ namespace Ecs.Views.Linkable.Impl
 {
     public class NpcView : NetworkObjectView, 
         IDestinationAddedListener,
-        IDestinationRemovedListener
+        IDestinationRemovedListener,
+        IAiAddedListener,
+        IAiRemovedListener,
+        IMoveDirectionAddedListener
     {
         [SerializeField] private CharacterController _characterController;
         [SerializeField] private NavMeshAgent _navMeshAgent;
@@ -19,6 +22,9 @@ namespace Ecs.Views.Linkable.Impl
             
             selfEntity.AddDestinationAddedListener(this);
             selfEntity.AddDestinationRemovedListener(this);
+            selfEntity.AddAiAddedListener(this);
+            selfEntity.AddAiRemovedListener(this);
+            selfEntity.AddMoveDirectionAddedListener(this);
         }   
 
         public void OnDestinationAdded(GameEntity entity, Vector3 value)
@@ -29,6 +35,23 @@ namespace Ecs.Views.Linkable.Impl
         public void OnDestinationRemoved(GameEntity entity)
         {
             _navMeshAgent.SetDestination(transform.position);
+        }
+
+        public void OnAiAdded(GameEntity entity)
+        {
+            _characterController.enabled = false;
+            _navMeshAgent.isStopped = false;
+        }
+
+        public void OnAiRemoved(GameEntity entity)
+        {
+            _navMeshAgent.isStopped = true;
+            _characterController.enabled = true;
+        }
+        
+        public void OnMoveDirectionAdded(GameEntity entity, Vector3 value)
+        {
+            _characterController.Move(value * 3f* Time.deltaTime);
         }
     }
 }

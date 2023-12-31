@@ -9,5 +9,10 @@
 //------------------------------------------------------------------------------
 public partial interface IInfectedEntity
 {
-	bool IsInfected { get; set; }
+	Ecs.Action.Components.InfectedComponent Infected { get; }
+	bool HasInfected { get; }
+
+	void AddInfected(Ecs.Uid.Uid newOwner);
+	void ReplaceInfected(Ecs.Uid.Uid newOwner);
+	void RemoveInfected();
 }
