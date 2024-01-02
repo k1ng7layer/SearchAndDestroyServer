@@ -23,6 +23,7 @@ namespace Ecs.Game.Systems
 
         protected override bool Filter(GameEntity entity) => 
             entity.IsInstantiate 
+            && entity.IsPlayer
             && _game.GameState.Value == EGameState.Preparing 
             && !entity.IsDestroyed;
 

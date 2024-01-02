@@ -27,9 +27,11 @@ namespace Ecs.Game.Systems
             countdown -= _timeProvider.DeltaTime;
             
             _game.ReplaceGameCountdown(countdown);
+
+            if (!(countdown <= 0)) return;
             
-            if (countdown == 0)
-                _game.RemoveGameCountdown();
+            _game.ReplaceGameCountdown(0);
+            _game.RemoveGameCountdown();
         }
     }
 }

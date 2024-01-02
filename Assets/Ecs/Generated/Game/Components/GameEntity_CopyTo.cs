@@ -18,13 +18,13 @@ public partial class GameEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is Ecs.Game.Components.RotationVelocityComponent RotationVelocity)
+		if (component is Ecs.Game.Components.TargetComponent Target)
 		{
-			CopyRotationVelocityTo(RotationVelocity);
+			CopyTargetTo(Target);
 		}
-		else if (component is Ecs.Game.Components.InputRotationComponent InputRotation)
+		else if (component is Ecs.Game.Components.ControlStateComponent ControlState)
 		{
-			CopyInputRotationTo(InputRotation);
+			CopyControlStateTo(ControlState);
 		}
 		else if (component is Ecs.Game.Components.PrefabComponent Prefab)
 		{
@@ -38,6 +38,10 @@ public partial class GameEntity
 		{
 			IsInstantiate = true;
 		}
+		else if (component is Ecs.Game.Components.TimerComponent Timer)
+		{
+			CopyTimerTo(Timer);
+		}
 		else if (component is Ecs.Game.Components.ConnectionIdComponent ConnectionId)
 		{
 			CopyConnectionIdTo(ConnectionId);
@@ -46,9 +50,25 @@ public partial class GameEntity
 		{
 			CopyMoveDirectionTo(MoveDirection);
 		}
+		else if (component is Ecs.Game.Components.AiComponent Ai)
+		{
+			IsAi = true;
+		}
+		else if (component is Ecs.Game.Components.AttachedComponent Attached)
+		{
+			CopyAttachedTo(Attached);
+		}
 		else if (component is Ecs.Game.Components.UidComponent Uid)
 		{
 			CopyUidTo(Uid);
+		}
+		else if (component is Ecs.Game.Components.RotationVelocityComponent RotationVelocity)
+		{
+			CopyRotationVelocityTo(RotationVelocity);
+		}
+		else if (component is Ecs.Game.Components.InputRotationComponent InputRotation)
+		{
+			CopyInputRotationTo(InputRotation);
 		}
 		else if (component is Ecs.Game.Components.HostileComponent Hostile)
 		{
@@ -57,6 +77,10 @@ public partial class GameEntity
 		else if (component is Ecs.Game.Components.DestroyedComponent Destroyed)
 		{
 			IsDestroyed = true;
+		}
+		else if (component is Ecs.Game.Components.DestinationComponent Destination)
+		{
+			CopyDestinationTo(Destination);
 		}
 		else if (component is Ecs.Game.Components.GameStateComponent GameState)
 		{
@@ -78,6 +102,18 @@ public partial class GameEntity
 		{
 			CopyPositionTo(Position);
 		}
+		else if (component is Ecs.Game.Components.NetworkIdComponent NetworkId)
+		{
+			CopyNetworkIdTo(NetworkId);
+		}
+		else if (component is Ecs.Game.Components.NpcComponent Npc)
+		{
+			IsNpc = true;
+		}
+		else if (component is Ecs.Game.Components.OwnerComponent Owner)
+		{
+			CopyOwnerTo(Owner);
+		}
 		else if (component is Ecs.Game.Components.LinkComponent Link)
 		{
 			CopyLinkTo(Link);
@@ -90,6 +126,10 @@ public partial class GameEntity
 		{
 			CopyGameCountdownTo(GameCountdown);
 		}
+		else if (component is Ecs.Game.Components.InfectedComponent Infected)
+		{
+			CopyInfectedTo(Infected);
+		}
 		else if (component is InputAddedListenerComponent InputAddedListener)
 		{
 			CopyInputAddedListenerTo(InputAddedListener);
@@ -101,6 +141,30 @@ public partial class GameEntity
 		else if (component is MoveDirectionAddedListenerComponent MoveDirectionAddedListener)
 		{
 			CopyMoveDirectionAddedListenerTo(MoveDirectionAddedListener);
+		}
+		else if (component is AiAddedListenerComponent AiAddedListener)
+		{
+			CopyAiAddedListenerTo(AiAddedListener);
+		}
+		else if (component is AiRemovedListenerComponent AiRemovedListener)
+		{
+			CopyAiRemovedListenerTo(AiRemovedListener);
+		}
+		else if (component is AttachedAddedListenerComponent AttachedAddedListener)
+		{
+			CopyAttachedAddedListenerTo(AttachedAddedListener);
+		}
+		else if (component is AttachedRemovedListenerComponent AttachedRemovedListener)
+		{
+			CopyAttachedRemovedListenerTo(AttachedRemovedListener);
+		}
+		else if (component is DestinationAddedListenerComponent DestinationAddedListener)
+		{
+			CopyDestinationAddedListenerTo(DestinationAddedListener);
+		}
+		else if (component is DestinationRemovedListenerComponent DestinationRemovedListener)
+		{
+			CopyDestinationRemovedListenerTo(DestinationRemovedListener);
 		}
 		else if (component is RotationAddedListenerComponent RotationAddedListener)
 		{

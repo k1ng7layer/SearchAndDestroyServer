@@ -20,7 +20,7 @@ namespace Db.Prefabs.Impl
                     return prefab;
             }
 
-            throw new Exception($"[PrefabsBase] Can't find prefab with name: {name}");
+            throw new Exception($"[PrefabsBase] Can't find prefab with name: {prefabName}");
         }
 
         public NetworkPrefab Get(uint assetId)

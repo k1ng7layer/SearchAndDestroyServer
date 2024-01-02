@@ -34,14 +34,25 @@ namespace Services.PlayerInput.impl
             
             if (playerEntity == null)
                 return;
+
+            var target = playerEntity;
+
+            if (playerEntity.HasAttached)
+            {
+                var attached = playerEntity.Attached.Carrier;
+                
+                target = _game.GetEntityWithUid(attached);
+            }
             
             Debug.Log($"OnPlayerInput, connId: {connection.connectionId}");
-            playerEntity.ReplaceInput(new Vector3(msg.X, msg.Y, msg.Z));
+            target.ReplaceInput(new Vector3(msg.X, msg.Y, msg.Z));
         }
         
-        private void OnPlayerRotationInput(NetworkConnectionToClient connection,
+        private void OnPlayerRotationInput(
+            NetworkConnectionToClient connection,
             PlayerRotationMessage msg, 
-            int connNum)
+            int connNum
+        )
         {
             var playerEntity = _game.GetEntityWithConnectionId(connection.connectionId);
             

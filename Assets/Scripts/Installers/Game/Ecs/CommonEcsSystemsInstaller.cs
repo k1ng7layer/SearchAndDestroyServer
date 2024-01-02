@@ -1,4 +1,5 @@
-﻿using Ecs.Game.Systems;
+﻿using Ecs.Action.Systems;
+using Ecs.Game.Systems;
 using Services.PlayerInput.impl;
 using Services.PlayerService.Impl;
 using Zenject;
@@ -20,6 +21,13 @@ namespace Installers.Game.Ecs
             Container.BindInterfacesAndSelfTo<PlayerInputRotationSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<CountdownSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<SyncGameCountdownSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<SpawnNpcSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<ChooseDestinationSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<CheckDestinationSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<InfectNpcSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<AttachPlayerToNpcSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<MentalOverloadTimerSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<DetachPlayerSystem>().AsSingle();
             
             BindServices();
         }

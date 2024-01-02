@@ -13,52 +13,84 @@ using JCMG.EntitasRedux;
 
 public static class GameComponentsLookup
 {
-	public const int ConnectionId = 0;
-	public const int Destroyed = 1;
-	public const int GameCountdown = 2;
-	public const int GameState = 3;
-	public const int Gunner = 4;
-	public const int Hostile = 5;
-	public const int Input = 6;
-	public const int InputRotation = 7;
-	public const int Instantiate = 8;
-	public const int Link = 9;
-	public const int MoveDirection = 10;
-	public const int Player = 11;
-	public const int Position = 12;
-	public const int Prefab = 13;
-	public const int Rotation = 14;
-	public const int RotationVelocity = 15;
-	public const int Transform = 16;
-	public const int Uid = 17;
-	public const int GameCountdownAddedListener = 18;
-	public const int InputAddedListener = 19;
-	public const int InstantiateAddedListener = 20;
-	public const int LinkRemovedListener = 21;
-	public const int MoveDirectionAddedListener = 22;
-	public const int PositionAddedListener = 23;
-	public const int RotationAddedListener = 24;
+	public const int AiAddedListener = 0;
+	public const int AiRemovedListener = 1;
+	public const int AttachedAddedListener = 2;
+	public const int AttachedRemovedListener = 3;
+	public const int DestinationAddedListener = 4;
+	public const int DestinationRemovedListener = 5;
+	public const int Ai = 6;
+	public const int Attached = 7;
+	public const int ConnectionId = 8;
+	public const int ControlState = 9;
+	public const int Destination = 10;
+	public const int Destroyed = 11;
+	public const int GameCountdown = 12;
+	public const int GameState = 13;
+	public const int Gunner = 14;
+	public const int Hostile = 15;
+	public const int Infected = 16;
+	public const int Input = 17;
+	public const int InputRotation = 18;
+	public const int Instantiate = 19;
+	public const int Link = 20;
+	public const int MoveDirection = 21;
+	public const int NetworkId = 22;
+	public const int Npc = 23;
+	public const int Owner = 24;
+	public const int Player = 25;
+	public const int Position = 26;
+	public const int Prefab = 27;
+	public const int Rotation = 28;
+	public const int RotationVelocity = 29;
+	public const int Target = 30;
+	public const int Timer = 31;
+	public const int Transform = 32;
+	public const int Uid = 33;
+	public const int GameCountdownAddedListener = 34;
+	public const int InputAddedListener = 35;
+	public const int InstantiateAddedListener = 36;
+	public const int LinkRemovedListener = 37;
+	public const int MoveDirectionAddedListener = 38;
+	public const int PositionAddedListener = 39;
+	public const int RotationAddedListener = 40;
 
-	public const int TotalComponents = 25;
+	public const int TotalComponents = 41;
 
 	public static readonly string[] ComponentNames =
 	{
+		"AiAddedListener",
+		"AiRemovedListener",
+		"AttachedAddedListener",
+		"AttachedRemovedListener",
+		"DestinationAddedListener",
+		"DestinationRemovedListener",
+		"Ai",
+		"Attached",
 		"ConnectionId",
+		"ControlState",
+		"Destination",
 		"Destroyed",
 		"GameCountdown",
 		"GameState",
 		"Gunner",
 		"Hostile",
+		"Infected",
 		"Input",
 		"InputRotation",
 		"Instantiate",
 		"Link",
 		"MoveDirection",
+		"NetworkId",
+		"Npc",
+		"Owner",
 		"Player",
 		"Position",
 		"Prefab",
 		"Rotation",
 		"RotationVelocity",
+		"Target",
+		"Timer",
 		"Transform",
 		"Uid",
 		"GameCountdownAddedListener",
@@ -72,22 +104,38 @@ public static class GameComponentsLookup
 
 	public static readonly System.Type[] ComponentTypes =
 	{
+		typeof(AiAddedListenerComponent),
+		typeof(AiRemovedListenerComponent),
+		typeof(AttachedAddedListenerComponent),
+		typeof(AttachedRemovedListenerComponent),
+		typeof(DestinationAddedListenerComponent),
+		typeof(DestinationRemovedListenerComponent),
+		typeof(Ecs.Game.Components.AiComponent),
+		typeof(Ecs.Game.Components.AttachedComponent),
 		typeof(Ecs.Game.Components.ConnectionIdComponent),
+		typeof(Ecs.Game.Components.ControlStateComponent),
+		typeof(Ecs.Game.Components.DestinationComponent),
 		typeof(Ecs.Game.Components.DestroyedComponent),
 		typeof(Ecs.Game.Components.GameCountdownComponent),
 		typeof(Ecs.Game.Components.GameStateComponent),
 		typeof(Ecs.Game.Components.GunnerComponent),
 		typeof(Ecs.Game.Components.HostileComponent),
+		typeof(Ecs.Game.Components.InfectedComponent),
 		typeof(Ecs.Game.Components.InputComponent),
 		typeof(Ecs.Game.Components.InputRotationComponent),
 		typeof(Ecs.Game.Components.InstantiateComponent),
 		typeof(Ecs.Game.Components.LinkComponent),
 		typeof(Ecs.Game.Components.MoveDirectionComponent),
+		typeof(Ecs.Game.Components.NetworkIdComponent),
+		typeof(Ecs.Game.Components.NpcComponent),
+		typeof(Ecs.Game.Components.OwnerComponent),
 		typeof(Ecs.Game.Components.PlayerComponent),
 		typeof(Ecs.Game.Components.PositionComponent),
 		typeof(Ecs.Game.Components.PrefabComponent),
 		typeof(Ecs.Game.Components.RotationComponent),
 		typeof(Ecs.Game.Components.RotationVelocityComponent),
+		typeof(Ecs.Game.Components.TargetComponent),
+		typeof(Ecs.Game.Components.TimerComponent),
 		typeof(Ecs.Game.Components.TransformComponent),
 		typeof(Ecs.Game.Components.UidComponent),
 		typeof(GameCountdownAddedListenerComponent),
@@ -101,31 +149,47 @@ public static class GameComponentsLookup
 
 	public static readonly Dictionary<Type, int> ComponentTypeToIndex = new Dictionary<Type, int>
 	{
-		{ typeof(Ecs.Game.Components.ConnectionIdComponent), 0 },
-		{ typeof(Ecs.Game.Components.DestroyedComponent), 1 },
-		{ typeof(Ecs.Game.Components.GameCountdownComponent), 2 },
-		{ typeof(Ecs.Game.Components.GameStateComponent), 3 },
-		{ typeof(Ecs.Game.Components.GunnerComponent), 4 },
-		{ typeof(Ecs.Game.Components.HostileComponent), 5 },
-		{ typeof(Ecs.Game.Components.InputComponent), 6 },
-		{ typeof(Ecs.Game.Components.InputRotationComponent), 7 },
-		{ typeof(Ecs.Game.Components.InstantiateComponent), 8 },
-		{ typeof(Ecs.Game.Components.LinkComponent), 9 },
-		{ typeof(Ecs.Game.Components.MoveDirectionComponent), 10 },
-		{ typeof(Ecs.Game.Components.PlayerComponent), 11 },
-		{ typeof(Ecs.Game.Components.PositionComponent), 12 },
-		{ typeof(Ecs.Game.Components.PrefabComponent), 13 },
-		{ typeof(Ecs.Game.Components.RotationComponent), 14 },
-		{ typeof(Ecs.Game.Components.RotationVelocityComponent), 15 },
-		{ typeof(Ecs.Game.Components.TransformComponent), 16 },
-		{ typeof(Ecs.Game.Components.UidComponent), 17 },
-		{ typeof(GameCountdownAddedListenerComponent), 18 },
-		{ typeof(InputAddedListenerComponent), 19 },
-		{ typeof(InstantiateAddedListenerComponent), 20 },
-		{ typeof(LinkRemovedListenerComponent), 21 },
-		{ typeof(MoveDirectionAddedListenerComponent), 22 },
-		{ typeof(PositionAddedListenerComponent), 23 },
-		{ typeof(RotationAddedListenerComponent), 24 }
+		{ typeof(AiAddedListenerComponent), 0 },
+		{ typeof(AiRemovedListenerComponent), 1 },
+		{ typeof(AttachedAddedListenerComponent), 2 },
+		{ typeof(AttachedRemovedListenerComponent), 3 },
+		{ typeof(DestinationAddedListenerComponent), 4 },
+		{ typeof(DestinationRemovedListenerComponent), 5 },
+		{ typeof(Ecs.Game.Components.AiComponent), 6 },
+		{ typeof(Ecs.Game.Components.AttachedComponent), 7 },
+		{ typeof(Ecs.Game.Components.ConnectionIdComponent), 8 },
+		{ typeof(Ecs.Game.Components.ControlStateComponent), 9 },
+		{ typeof(Ecs.Game.Components.DestinationComponent), 10 },
+		{ typeof(Ecs.Game.Components.DestroyedComponent), 11 },
+		{ typeof(Ecs.Game.Components.GameCountdownComponent), 12 },
+		{ typeof(Ecs.Game.Components.GameStateComponent), 13 },
+		{ typeof(Ecs.Game.Components.GunnerComponent), 14 },
+		{ typeof(Ecs.Game.Components.HostileComponent), 15 },
+		{ typeof(Ecs.Game.Components.InfectedComponent), 16 },
+		{ typeof(Ecs.Game.Components.InputComponent), 17 },
+		{ typeof(Ecs.Game.Components.InputRotationComponent), 18 },
+		{ typeof(Ecs.Game.Components.InstantiateComponent), 19 },
+		{ typeof(Ecs.Game.Components.LinkComponent), 20 },
+		{ typeof(Ecs.Game.Components.MoveDirectionComponent), 21 },
+		{ typeof(Ecs.Game.Components.NetworkIdComponent), 22 },
+		{ typeof(Ecs.Game.Components.NpcComponent), 23 },
+		{ typeof(Ecs.Game.Components.OwnerComponent), 24 },
+		{ typeof(Ecs.Game.Components.PlayerComponent), 25 },
+		{ typeof(Ecs.Game.Components.PositionComponent), 26 },
+		{ typeof(Ecs.Game.Components.PrefabComponent), 27 },
+		{ typeof(Ecs.Game.Components.RotationComponent), 28 },
+		{ typeof(Ecs.Game.Components.RotationVelocityComponent), 29 },
+		{ typeof(Ecs.Game.Components.TargetComponent), 30 },
+		{ typeof(Ecs.Game.Components.TimerComponent), 31 },
+		{ typeof(Ecs.Game.Components.TransformComponent), 32 },
+		{ typeof(Ecs.Game.Components.UidComponent), 33 },
+		{ typeof(GameCountdownAddedListenerComponent), 34 },
+		{ typeof(InputAddedListenerComponent), 35 },
+		{ typeof(InstantiateAddedListenerComponent), 36 },
+		{ typeof(LinkRemovedListenerComponent), 37 },
+		{ typeof(MoveDirectionAddedListenerComponent), 38 },
+		{ typeof(PositionAddedListenerComponent), 39 },
+		{ typeof(RotationAddedListenerComponent), 40 }
 	};
 
 	/// <summary>

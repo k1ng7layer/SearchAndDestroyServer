@@ -40,13 +40,15 @@ namespace Ecs.Game.Systems
 
         private bool AllLoaded()
         {
-            foreach (var playerKvp in _playerRepository.Players)
-            {
-                if (!playerKvp.Value.Loaded)
-                    return false;
-            }
+            // foreach (var playerKvp in _playerRepository.Players)
+            // {
+            //     if (!playerKvp.Value.Loaded)
+            //         return false;
+            // }
 
-            return true;
+            // return true;
+
+            return _playerRepository.Players.Count == 1;
         }
     }
 }
