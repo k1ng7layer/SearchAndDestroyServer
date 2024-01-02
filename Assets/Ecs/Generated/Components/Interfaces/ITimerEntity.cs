@@ -7,12 +7,12 @@
 //		the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public partial interface IInfectedEntity
+public partial interface ITimerEntity
 {
-	Ecs.Game.Components.InfectedComponent Infected { get; }
-	bool HasInfected { get; }
+	Ecs.Game.Components.TimerComponent Timer { get; }
+	bool HasTimer { get; }
 
-	void AddInfected(Ecs.Uid.Uid newOwner);
-	void ReplaceInfected(Ecs.Uid.Uid newOwner);
-	void RemoveInfected();
+	void AddTimer(float newValue);
+	void ReplaceTimer(float newValue);
+	void RemoveTimer();
 }

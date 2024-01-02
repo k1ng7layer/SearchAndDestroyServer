@@ -1,6 +1,6 @@
 ﻿using JCMG.EntitasRedux;
 
-namespace Ecs.Action.Components
+namespace Ecs.Game.Components
 {
     [Game]
     public class InfectedComponent : IComponent

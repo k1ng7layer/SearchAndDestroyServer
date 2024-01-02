@@ -14,16 +14,18 @@ using JCMG.EntitasRedux;
 public static class ActionComponentsLookup
 {
 	public const int ChooseDestination = 0;
-	public const int SpawnNpc = 1;
-	public const int SpawnPlayer = 2;
-	public const int StartGame = 3;
-	public const int Destroyed = 4;
+	public const int DetachPlayer = 1;
+	public const int SpawnNpc = 2;
+	public const int SpawnPlayer = 3;
+	public const int StartGame = 4;
+	public const int Destroyed = 5;
 
-	public const int TotalComponents = 5;
+	public const int TotalComponents = 6;
 
 	public static readonly string[] ComponentNames =
 	{
 		"ChooseDestination",
+		"DetachPlayer",
 		"SpawnNpc",
 		"SpawnPlayer",
 		"StartGame",
@@ -33,6 +35,7 @@ public static class ActionComponentsLookup
 	public static readonly System.Type[] ComponentTypes =
 	{
 		typeof(Ecs.Action.Components.ChooseDestinationComponent),
+		typeof(Ecs.Action.Components.DetachPlayerComponent),
 		typeof(Ecs.Action.Components.SpawnNpcComponent),
 		typeof(Ecs.Action.Components.SpawnPlayerComponent),
 		typeof(Ecs.Action.Components.StartGameComponent),
@@ -42,10 +45,11 @@ public static class ActionComponentsLookup
 	public static readonly Dictionary<Type, int> ComponentTypeToIndex = new Dictionary<Type, int>
 	{
 		{ typeof(Ecs.Action.Components.ChooseDestinationComponent), 0 },
-		{ typeof(Ecs.Action.Components.SpawnNpcComponent), 1 },
-		{ typeof(Ecs.Action.Components.SpawnPlayerComponent), 2 },
-		{ typeof(Ecs.Action.Components.StartGameComponent), 3 },
-		{ typeof(Ecs.Game.Components.DestroyedComponent), 4 }
+		{ typeof(Ecs.Action.Components.DetachPlayerComponent), 1 },
+		{ typeof(Ecs.Action.Components.SpawnNpcComponent), 2 },
+		{ typeof(Ecs.Action.Components.SpawnPlayerComponent), 3 },
+		{ typeof(Ecs.Action.Components.StartGameComponent), 4 },
+		{ typeof(Ecs.Game.Components.DestroyedComponent), 5 }
 	};
 
 	/// <summary>

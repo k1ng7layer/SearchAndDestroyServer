@@ -7,12 +7,12 @@
 //		the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public partial interface IInfectedEntity
+public partial interface IDetachPlayerEntity
 {
-	Ecs.Game.Components.InfectedComponent Infected { get; }
-	bool HasInfected { get; }
+	Ecs.Action.Components.DetachPlayerComponent DetachPlayer { get; }
+	bool HasDetachPlayer { get; }
 
-	void AddInfected(Ecs.Uid.Uid newOwner);
-	void ReplaceInfected(Ecs.Uid.Uid newOwner);
-	void RemoveInfected();
+	void AddDetachPlayer(Ecs.Uid.Uid newPlayer);
+	void ReplaceDetachPlayer(Ecs.Uid.Uid newPlayer);
+	void RemoveDetachPlayer();
 }

@@ -32,9 +32,14 @@ namespace Ecs.Game.Systems
             var player = _game.GetEntityWithConnectionId(conn.connectionId);
          
             var npc = _game.GetEntityWithNetworkId(msg.NpcId);
+            
+            if (npc.HasAttached)
+                return;
+            
             var npcUid = npc.Uid.Value;
             
             player.ReplaceAttached(npcUid);
+            player.ReplaceTimer(10f);
             
             npc.IsAi = false;
             var view = (NetworkObjectView)npc.Link.View;

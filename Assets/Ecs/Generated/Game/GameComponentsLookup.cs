@@ -19,17 +19,17 @@ public static class GameComponentsLookup
 	public const int AttachedRemovedListener = 3;
 	public const int DestinationAddedListener = 4;
 	public const int DestinationRemovedListener = 5;
-	public const int Infected = 6;
-	public const int Ai = 7;
-	public const int Attached = 8;
-	public const int ConnectionId = 9;
-	public const int ControlState = 10;
-	public const int Destination = 11;
-	public const int Destroyed = 12;
-	public const int GameCountdown = 13;
-	public const int GameState = 14;
-	public const int Gunner = 15;
-	public const int Hostile = 16;
+	public const int Ai = 6;
+	public const int Attached = 7;
+	public const int ConnectionId = 8;
+	public const int ControlState = 9;
+	public const int Destination = 10;
+	public const int Destroyed = 11;
+	public const int GameCountdown = 12;
+	public const int GameState = 13;
+	public const int Gunner = 14;
+	public const int Hostile = 15;
+	public const int Infected = 16;
 	public const int Input = 17;
 	public const int InputRotation = 18;
 	public const int Instantiate = 19;
@@ -44,17 +44,18 @@ public static class GameComponentsLookup
 	public const int Rotation = 28;
 	public const int RotationVelocity = 29;
 	public const int Target = 30;
-	public const int Transform = 31;
-	public const int Uid = 32;
-	public const int GameCountdownAddedListener = 33;
-	public const int InputAddedListener = 34;
-	public const int InstantiateAddedListener = 35;
-	public const int LinkRemovedListener = 36;
-	public const int MoveDirectionAddedListener = 37;
-	public const int PositionAddedListener = 38;
-	public const int RotationAddedListener = 39;
+	public const int Timer = 31;
+	public const int Transform = 32;
+	public const int Uid = 33;
+	public const int GameCountdownAddedListener = 34;
+	public const int InputAddedListener = 35;
+	public const int InstantiateAddedListener = 36;
+	public const int LinkRemovedListener = 37;
+	public const int MoveDirectionAddedListener = 38;
+	public const int PositionAddedListener = 39;
+	public const int RotationAddedListener = 40;
 
-	public const int TotalComponents = 40;
+	public const int TotalComponents = 41;
 
 	public static readonly string[] ComponentNames =
 	{
@@ -64,7 +65,6 @@ public static class GameComponentsLookup
 		"AttachedRemovedListener",
 		"DestinationAddedListener",
 		"DestinationRemovedListener",
-		"Infected",
 		"Ai",
 		"Attached",
 		"ConnectionId",
@@ -75,6 +75,7 @@ public static class GameComponentsLookup
 		"GameState",
 		"Gunner",
 		"Hostile",
+		"Infected",
 		"Input",
 		"InputRotation",
 		"Instantiate",
@@ -89,6 +90,7 @@ public static class GameComponentsLookup
 		"Rotation",
 		"RotationVelocity",
 		"Target",
+		"Timer",
 		"Transform",
 		"Uid",
 		"GameCountdownAddedListener",
@@ -108,7 +110,6 @@ public static class GameComponentsLookup
 		typeof(AttachedRemovedListenerComponent),
 		typeof(DestinationAddedListenerComponent),
 		typeof(DestinationRemovedListenerComponent),
-		typeof(Ecs.Action.Components.InfectedComponent),
 		typeof(Ecs.Game.Components.AiComponent),
 		typeof(Ecs.Game.Components.AttachedComponent),
 		typeof(Ecs.Game.Components.ConnectionIdComponent),
@@ -119,6 +120,7 @@ public static class GameComponentsLookup
 		typeof(Ecs.Game.Components.GameStateComponent),
 		typeof(Ecs.Game.Components.GunnerComponent),
 		typeof(Ecs.Game.Components.HostileComponent),
+		typeof(Ecs.Game.Components.InfectedComponent),
 		typeof(Ecs.Game.Components.InputComponent),
 		typeof(Ecs.Game.Components.InputRotationComponent),
 		typeof(Ecs.Game.Components.InstantiateComponent),
@@ -133,6 +135,7 @@ public static class GameComponentsLookup
 		typeof(Ecs.Game.Components.RotationComponent),
 		typeof(Ecs.Game.Components.RotationVelocityComponent),
 		typeof(Ecs.Game.Components.TargetComponent),
+		typeof(Ecs.Game.Components.TimerComponent),
 		typeof(Ecs.Game.Components.TransformComponent),
 		typeof(Ecs.Game.Components.UidComponent),
 		typeof(GameCountdownAddedListenerComponent),
@@ -152,17 +155,17 @@ public static class GameComponentsLookup
 		{ typeof(AttachedRemovedListenerComponent), 3 },
 		{ typeof(DestinationAddedListenerComponent), 4 },
 		{ typeof(DestinationRemovedListenerComponent), 5 },
-		{ typeof(Ecs.Action.Components.InfectedComponent), 6 },
-		{ typeof(Ecs.Game.Components.AiComponent), 7 },
-		{ typeof(Ecs.Game.Components.AttachedComponent), 8 },
-		{ typeof(Ecs.Game.Components.ConnectionIdComponent), 9 },
-		{ typeof(Ecs.Game.Components.ControlStateComponent), 10 },
-		{ typeof(Ecs.Game.Components.DestinationComponent), 11 },
-		{ typeof(Ecs.Game.Components.DestroyedComponent), 12 },
-		{ typeof(Ecs.Game.Components.GameCountdownComponent), 13 },
-		{ typeof(Ecs.Game.Components.GameStateComponent), 14 },
-		{ typeof(Ecs.Game.Components.GunnerComponent), 15 },
-		{ typeof(Ecs.Game.Components.HostileComponent), 16 },
+		{ typeof(Ecs.Game.Components.AiComponent), 6 },
+		{ typeof(Ecs.Game.Components.AttachedComponent), 7 },
+		{ typeof(Ecs.Game.Components.ConnectionIdComponent), 8 },
+		{ typeof(Ecs.Game.Components.ControlStateComponent), 9 },
+		{ typeof(Ecs.Game.Components.DestinationComponent), 10 },
+		{ typeof(Ecs.Game.Components.DestroyedComponent), 11 },
+		{ typeof(Ecs.Game.Components.GameCountdownComponent), 12 },
+		{ typeof(Ecs.Game.Components.GameStateComponent), 13 },
+		{ typeof(Ecs.Game.Components.GunnerComponent), 14 },
+		{ typeof(Ecs.Game.Components.HostileComponent), 15 },
+		{ typeof(Ecs.Game.Components.InfectedComponent), 16 },
 		{ typeof(Ecs.Game.Components.InputComponent), 17 },
 		{ typeof(Ecs.Game.Components.InputRotationComponent), 18 },
 		{ typeof(Ecs.Game.Components.InstantiateComponent), 19 },
@@ -177,15 +180,16 @@ public static class GameComponentsLookup
 		{ typeof(Ecs.Game.Components.RotationComponent), 28 },
 		{ typeof(Ecs.Game.Components.RotationVelocityComponent), 29 },
 		{ typeof(Ecs.Game.Components.TargetComponent), 30 },
-		{ typeof(Ecs.Game.Components.TransformComponent), 31 },
-		{ typeof(Ecs.Game.Components.UidComponent), 32 },
-		{ typeof(GameCountdownAddedListenerComponent), 33 },
-		{ typeof(InputAddedListenerComponent), 34 },
-		{ typeof(InstantiateAddedListenerComponent), 35 },
-		{ typeof(LinkRemovedListenerComponent), 36 },
-		{ typeof(MoveDirectionAddedListenerComponent), 37 },
-		{ typeof(PositionAddedListenerComponent), 38 },
-		{ typeof(RotationAddedListenerComponent), 39 }
+		{ typeof(Ecs.Game.Components.TimerComponent), 31 },
+		{ typeof(Ecs.Game.Components.TransformComponent), 32 },
+		{ typeof(Ecs.Game.Components.UidComponent), 33 },
+		{ typeof(GameCountdownAddedListenerComponent), 34 },
+		{ typeof(InputAddedListenerComponent), 35 },
+		{ typeof(InstantiateAddedListenerComponent), 36 },
+		{ typeof(LinkRemovedListenerComponent), 37 },
+		{ typeof(MoveDirectionAddedListenerComponent), 38 },
+		{ typeof(PositionAddedListenerComponent), 39 },
+		{ typeof(RotationAddedListenerComponent), 40 }
 	};
 
 	/// <summary>

@@ -26,6 +26,8 @@ namespace Installers.Game.Ecs
             Container.BindInterfacesAndSelfTo<CheckDestinationSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<InfectNpcSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<AttachPlayerToNpcSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<MentalOverloadTimerSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<DetachPlayerSystem>().AsSingle();
             
             BindServices();
         }
