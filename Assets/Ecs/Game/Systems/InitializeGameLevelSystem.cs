@@ -4,13 +4,13 @@ using Utils;
 
 namespace Ecs.Game.Systems
 {
-    public class InitializeGameSystem : IInitializeSystem
+    public class InitializeGameLevelSystem : IInitializeSystem
     {
         private readonly GameContext _game;
         private readonly ActionContext _action;
         private readonly ILevelObjectsHolder _levelObjectsHolder;
 
-        public InitializeGameSystem(
+        public InitializeGameLevelSystem(
             GameContext game, 
             ActionContext action, 
             ILevelObjectsHolder levelObjectsHolder)

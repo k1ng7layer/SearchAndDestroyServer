@@ -7,7 +7,7 @@ using Zenject;
 
 namespace Ecs.Game.Systems
 {
-    public class MentalOverloadTimerSystem : IUpdateSystem
+    public class PlayerStateTimerSystem : IUpdateSystem
     {
         private static readonly ListPool<GameEntity> EntityPool = ListPool<GameEntity>.Instance;
 
@@ -16,7 +16,7 @@ namespace Ecs.Game.Systems
         private readonly IGroup<GameEntity> _attachedParasites;
         private readonly ActionContext _action;
 
-        public MentalOverloadTimerSystem(
+        public PlayerStateTimerSystem(
             ITimeProvider timeProvider,
             INetworkServerManager serverManager,
             GameContext game,
@@ -46,7 +46,7 @@ namespace Ecs.Game.Systems
 
                 var connId = attachedPlayer.ConnectionId.Value;
                 
-                _serverManager.SendTo(connId, new MentalOverloadTimerMessage
+                _serverManager.SendTo(connId, new PlayerStateTimerMessage
                 {
                     Value = timer
                 });
@@ -54,9 +54,6 @@ namespace Ecs.Game.Systems
                 if (timer == 0)
                 {
                     attachedPlayer.RemoveTimer();
-                    var playerUid = attachedPlayer.Uid.Value;
-                    
-                    _action.CreateEntity().AddDetachPlayer(playerUid);
                 }
                     
             }

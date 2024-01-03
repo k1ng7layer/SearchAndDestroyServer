@@ -11,11 +11,11 @@ namespace Installers.Game.Ecs
     {
         public override void InstallBindings()
         {
-            Container.BindInterfacesAndSelfTo<InitializeGameSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<InitializeGameLevelSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<SyncGameStateSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<WaitPlayersLoadedSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnPlayerSystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<StartGameSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<WairPlayerSpawnedSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<StartCountdownSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<MoveDirectionSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerInputRotationSystem>().AsSingle();
@@ -26,8 +26,9 @@ namespace Installers.Game.Ecs
             Container.BindInterfacesAndSelfTo<CheckDestinationSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<InfectNpcSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<AttachPlayerToNpcSystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<MentalOverloadTimerSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<PlayerStateTimerSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<DetachPlayerSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<MentalOverloadSystem>().AsSingle();
             
             BindServices();
         }

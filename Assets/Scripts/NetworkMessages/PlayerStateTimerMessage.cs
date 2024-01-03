@@ -2,7 +2,7 @@
 
 namespace NetworkMessages
 {
-    public struct MentalOverloadTimerMessage : NetworkMessage
+    public struct PlayerStateTimerMessage : NetworkMessage
     {
         public float Value;
     }

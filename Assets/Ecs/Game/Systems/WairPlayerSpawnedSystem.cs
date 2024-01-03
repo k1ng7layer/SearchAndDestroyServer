@@ -4,14 +4,14 @@ using Utils;
 
 namespace Ecs.Game.Systems
 {
-    public class StartGameSystem : ReactiveSystem<GameEntity>
+    public class WairPlayerSpawnedSystem : ReactiveSystem<GameEntity>
     {
         private const int MaxPlayers = 1;
         
         private readonly GameContext _game;
         private readonly IGroup<GameEntity> _spawnedPlayerGroup;
 
-        public StartGameSystem(GameContext game) : base(game)
+        public WairPlayerSpawnedSystem(GameContext game) : base(game)
         {
             _game = game;
 
