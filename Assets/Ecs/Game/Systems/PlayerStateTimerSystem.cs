@@ -27,7 +27,7 @@ namespace Ecs.Game.Systems
             _serverManager = serverManager;
             _action = action;
 
-            _attachedParasites = game.GetGroup(GameMatcher.AllOf(GameMatcher.Attached, GameMatcher.Timer));
+            _attachedParasites = game.GetGroup(GameMatcher.AllOf(GameMatcher.Timer));
         }
         
         public void Update()
@@ -46,6 +46,7 @@ namespace Ecs.Game.Systems
 
                 var connId = attachedPlayer.ConnectionId.Value;
                 
+                Debug.Log($"PlayerStateTimerSystem: {timer}");
                 _serverManager.SendTo(connId, new PlayerStateTimerMessage
                 {
                     Value = timer

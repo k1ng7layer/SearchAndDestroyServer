@@ -3,12 +3,12 @@ using Services.TimeProvider;
 
 namespace Ecs.Game.Systems
 {
-    public class CountdownSystem : IUpdateSystem
+    public class CountdownTickSystem : IUpdateSystem
     {
         private readonly GameContext _game;
         private readonly ITimeProvider _timeProvider;
 
-        public CountdownSystem(
+        public CountdownTickSystem(
             GameContext game, 
             ITimeProvider timeProvider
         )

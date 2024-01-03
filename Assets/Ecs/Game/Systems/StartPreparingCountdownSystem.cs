@@ -5,12 +5,12 @@ using Utils;
 
 namespace Ecs.Game.Systems
 {
-    public class StartCountdownSystem : ReactiveSystem<GameEntity>
+    public class StartPreparingCountdownSystem : ReactiveSystem<GameEntity>
     {
         private readonly GameContext _game;
         private readonly ICommonGameSettings _commonGameSettings;
 
-        public StartCountdownSystem(
+        public StartPreparingCountdownSystem(
             GameContext game, 
             ICommonGameSettings commonGameSettings
         ) : base(game)
@@ -27,7 +27,7 @@ namespace Ecs.Game.Systems
 
         protected override void Execute(List<GameEntity> entities)
         {
-            foreach (var entity in entities)
+            foreach (var _ in entities)
             {
                 var time = _commonGameSettings.PreparingTime;
                 

@@ -35,7 +35,8 @@ namespace Ecs.Game.Systems
                 
                 var rotationVelocity = player.RotationVelocity.Value;
                 
-                var angle = Mathf.SmoothDampAngle(player.Transform.Value.eulerAngles.y, inputRotation, ref rotationVelocity,
+                var angle = Mathf.SmoothDampAngle(player.Transform.Value.eulerAngles.y, inputRotation, 
+                    ref rotationVelocity,
                     TurnSmoothTime);
 
                 player.ReplaceRotationVelocity(rotationVelocity);

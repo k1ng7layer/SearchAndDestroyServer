@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a44c45bb645d4c1a9384917181b18ccf, type: 3}
-  m_Name: CommonGameSettings
+  m_Script: {fileID: 11500000, guid: af257f74944b47e5a7c23497c77d9e7f, type: 3}
+  m_Name: PlayerSettings
   m_EditorClassIdentifier: 
-  _preparingTime: 5
+  _maxDetachedTime: 10

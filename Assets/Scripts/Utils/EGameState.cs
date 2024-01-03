@@ -4,6 +4,7 @@
     {
         Default,
         Preparing,
-        Countdown
+        Countdown,
+        Game
     }
 }
