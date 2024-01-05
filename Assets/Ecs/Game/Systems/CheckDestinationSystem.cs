@@ -1,6 +1,7 @@
 ﻿using JCMG.EntitasRedux;
 using Settings.Npc;
 using UnityEngine;
+using Utils;
 using Zenject;
 
 namespace Ecs.Game.Systems
@@ -9,12 +10,17 @@ namespace Ecs.Game.Systems
     {
         private static readonly ListPool<GameEntity> EntityPool = ListPool<GameEntity>.Instance;
 
+        private readonly GameContext _game;
         private readonly ActionContext _action;
         private readonly INpcSettings _npcSettings;
         private readonly IGroup<GameEntity> _npcGroup;
 
-        public CheckDestinationSystem(GameContext game, ActionContext action, INpcSettings npcSettings)
+        public CheckDestinationSystem(GameContext game, 
+            ActionContext action, 
+            INpcSettings npcSettings
+        )
         {
+            _game = game;
             _action = action;
             _npcSettings = npcSettings;
             _npcGroup = game.GetGroup(GameMatcher.AllOf(GameMatcher.Npc).NoneOf(GameMatcher.Infected));
@@ -22,6 +28,9 @@ namespace Ecs.Game.Systems
         
         public void Update()
         {
+            if (_game.GameState.Value == EGameState.Default)
+                return;
+            
             var npcPlayers = EntityPool.Spawn();
             _npcGroup.GetEntities(npcPlayers);
 

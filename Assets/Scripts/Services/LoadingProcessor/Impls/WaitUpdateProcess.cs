@@ -28,6 +28,7 @@ namespace Core.LoadingProcessor.Impls
                     return;
 
                 _disposable.Dispose();
+                
                 onComplete();
             });
         }

@@ -52,6 +52,8 @@ namespace Ecs.Views.Linkable.Impl
 
             if (!_destroyed)
                 DestroyObject();
+            
+            //NetworkServer.Destroy(gameObject);
         }
 
         protected virtual void DestroyObject()
@@ -77,6 +79,7 @@ namespace Ecs.Views.Linkable.Impl
 
         protected virtual void InternalOnDestroy()
         {
+            // NetworkServer.Destroy(gameObject);
         }
 
         public void OnLinkRemoved(GameEntity entity)

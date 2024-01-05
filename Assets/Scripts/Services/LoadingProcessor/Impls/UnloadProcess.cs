@@ -18,6 +18,7 @@ namespace Services.LoadingProcessor.Impls
 
         public override void Do(Action complete)
         {
+            Debug.Log($"Unload Process scene: {_levelName}");
             _complete = complete;
             var unloadSceneAsync = SceneManager.UnloadSceneAsync(_levelName.ToString());
             unloadSceneAsync.completed += OnUnloadSceneCompleted;

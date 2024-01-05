@@ -2,7 +2,7 @@
 using NetworkMessages;
 using Services.Network;
 using Services.SceneLoading;
-using StateMachine;
+using Services.ServerManager;
 using UniRx.Async;
 
 namespace Ecs.Game.Systems
@@ -10,18 +10,15 @@ namespace Ecs.Game.Systems
     public class StartServerSystem : IInitializeSystem
     {
         private readonly INetworkServerManager _serverManager;
-        private readonly ISceneLoadingManager _sceneLoadingManager;
-        private readonly ServerStateMachine _serverStateMachine;
+        private readonly IServerStateManager _serverStateManager;
 
         public StartServerSystem(
-            INetworkServerManager serverManager, 
-            ISceneLoadingManager sceneLoadingManager,
-            ServerStateMachine serverStateMachine
+            INetworkServerManager serverManager,
+            IServerStateManager serverStateManager
         )
         {
             _serverManager = serverManager;
-            _sceneLoadingManager = sceneLoadingManager;
-            _serverStateMachine = serverStateMachine;
+            _serverStateManager = serverStateManager;
         }
         
         public void Initialize()
@@ -39,7 +36,7 @@ namespace Ecs.Game.Systems
             
             //TODO: Notify SCS about server opened connection
             
-            _sceneLoadingManager.LoadGameLevel(ELevelName.CLASSIC);
+            _serverStateManager.ChangeLevel(ELevelName.CLASSIC);
             
             // _serverManager.SendToAll(new LevelLoadingMessage
             // {

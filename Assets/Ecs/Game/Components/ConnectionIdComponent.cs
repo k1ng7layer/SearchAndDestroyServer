@@ -5,7 +5,7 @@ namespace Ecs.Game.Components
     [Game]
     public class ConnectionIdComponent : IComponent
     {
-        [PrimaryEntityIndex]
+        [EntityIndex]
         public int Value;
     }
 }

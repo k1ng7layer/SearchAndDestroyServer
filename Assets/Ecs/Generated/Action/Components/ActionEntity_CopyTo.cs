@@ -18,9 +18,9 @@ public partial class ActionEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is Ecs.Game.Components.DestroyedComponent Destroyed)
+		if (component is Ecs.Action.Components.DetachPlayerComponent DetachPlayer)
 		{
-			IsDestroyed = true;
+			CopyDetachPlayerTo(DetachPlayer);
 		}
 		else if (component is Ecs.Action.Components.SpawnPlayerComponent SpawnPlayer)
 		{
@@ -38,9 +38,9 @@ public partial class ActionEntity
 		{
 			CopyChooseDestinationTo(ChooseDestination);
 		}
-		else if (component is Ecs.Action.Components.DetachPlayerComponent DetachPlayer)
+		else if (component is Ecs.Game.Components.DestroyedComponent Destroyed)
 		{
-			CopyDetachPlayerTo(DetachPlayer);
+			IsDestroyed = true;
 		}
 		#endif
 	}

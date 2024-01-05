@@ -1,5 +1,6 @@
 ﻿using Core.Systems;
 using JCMG.EntitasRedux;
+using Utils;
 using Zenject;
 
 namespace Ecs.Game.Systems
@@ -9,14 +10,19 @@ namespace Ecs.Game.Systems
         private static readonly ListPool<GameEntity> EntityPool = ListPool<GameEntity>.Instance;
 
         private readonly IGroup<GameEntity> _movableGroup;
+        private readonly GameContext _game;
 
         public MoveDirectionSystem(GameContext game)
         {
+            _game = game;
             _movableGroup = game.GetGroup(GameMatcher.Input);
         }
         
         public void Update()
         {
+            if (_game.GameState.Value == EGameState.Default)
+                return;
+            
             var movables = EntityPool.Spawn();
             _movableGroup.GetEntities(movables);
 

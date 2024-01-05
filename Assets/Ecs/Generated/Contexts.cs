@@ -98,7 +98,7 @@ public partial class Contexts
 	[JCMG.EntitasRedux.PostConstructor]
 	public void InitializeEntityIndices()
 	{
-		Game.AddEntityIndex(new JCMG.EntitasRedux.PrimaryEntityIndex<GameEntity, int>(
+		Game.AddEntityIndex(new JCMG.EntitasRedux.EntityIndex<GameEntity, int>(
 			ConnectionId,
 			Game.GetGroup(GameMatcher.ConnectionId),
 			(e, c) => ((Ecs.Game.Components.ConnectionIdComponent)c).Value));
@@ -117,9 +117,9 @@ public partial class Contexts
 
 public static class ContextsExtensions
 {
-	public static GameEntity GetEntityWithConnectionId(this GameContext context, int Value)
+	public static System.Collections.Generic.HashSet<GameEntity> GetEntitiesWithConnectionId(this GameContext context, int Value)
 	{
-		return ((JCMG.EntitasRedux.PrimaryEntityIndex<GameEntity, int>)context.GetEntityIndex(Contexts.ConnectionId)).GetEntity(Value);
+		return ((JCMG.EntitasRedux.EntityIndex<GameEntity, int>)context.GetEntityIndex(Contexts.ConnectionId)).GetEntities(Value);
 	}
 
 	public static GameEntity GetEntityWithNetworkId(this GameContext context, uint Value)

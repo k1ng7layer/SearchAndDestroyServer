@@ -8,8 +8,8 @@ namespace Db.Prefabs.Impl
     [CreateAssetMenu(menuName = "Settings/PrefabsBase", fileName = "PrefabsBase")]
     public class SoPrefabsBase : ScriptableObject, IPrefabsBase, IPrefabInitializer
     {
-        [KeyValue(nameof(NetworkPrefab.AssetId))] [SerializeField]
-        private NetworkPrefab[] prefabs;
+        [KeyValue(nameof(NetworkPrefab.AssetId))] 
+        [SerializeField] private NetworkPrefab[] prefabs;
 
         public NetworkPrefab Get(string prefabName)
         {

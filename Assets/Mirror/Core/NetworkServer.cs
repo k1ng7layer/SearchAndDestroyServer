@@ -624,7 +624,7 @@ namespace Mirror
                     // otherwise it would overlap into the next message.
                     // => need to warn and disconnect to avoid undefined behaviour.
                     // => WARNING, not error. can happen if attacker sends random data.
-                    Debug.LogWarning($"Unknown message id: {msgType} for connection: {connection}. This can happen if no handler was registered for this message.");
+                     Debug.LogWarning($"Unknown message id: {msgType} for connection: {connection}. This can happen if no handler was registered for this message.");
                     // simply return false. caller is responsible for disconnecting.
                     //connection.Disconnect();
                     return false;
@@ -809,6 +809,7 @@ namespace Mirror
             where T : struct, NetworkMessage
         {
             ushort msgType = NetworkMessageId<T>.Id;
+            Debug.Log($"RegisterHandler: {typeof(T)}, msgType: {msgType}");
             if (handlers.ContainsKey(msgType))
             {
                 Debug.LogWarning($"NetworkServer.RegisterHandler replacing handler for {typeof(T).FullName}, id={msgType}. If replacement is intentional, use ReplaceHandler instead to avoid this warning.");
@@ -1542,11 +1543,13 @@ namespace Mirror
                 // Destroy if application is running
                 if (Application.isPlaying)
                 {
+                    Debug.Log($"Destroy network obj: {identity.gameObject}");
                     UnityEngine.Object.Destroy(identity.gameObject);
                 }
                 // Destroy can't be used in Editor during tests. use DestroyImmediate.
                 else
                 {
+                    Debug.Log($"Destroy network obj: {identity.gameObject}");
                     GameObject.DestroyImmediate(identity.gameObject);
                 }
             }

@@ -30,6 +30,7 @@ namespace Installers.Game.Ecs
             Container.BindInterfacesAndSelfTo<PlayerStateTimerSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<DetachPlayerSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<MentalOverloadSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<ControlSystem>().AsSingle();
             
             BindServices();
         }

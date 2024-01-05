@@ -18,7 +18,11 @@ public partial class GameEntity
 	public void CopyComponentTo(IComponent component)
 	{
 		#if !ENTITAS_REDUX_NO_IMPL
-		if (component is Ecs.Game.Components.TargetComponent Target)
+		if (component is Ecs.Game.Components.InfectedComponent Infected)
+		{
+			CopyInfectedTo(Infected);
+		}
+		else if (component is Ecs.Game.Components.TargetComponent Target)
 		{
 			CopyTargetTo(Target);
 		}
@@ -125,10 +129,6 @@ public partial class GameEntity
 		else if (component is Ecs.Game.Components.GameCountdownComponent GameCountdown)
 		{
 			CopyGameCountdownTo(GameCountdown);
-		}
-		else if (component is Ecs.Game.Components.InfectedComponent Infected)
-		{
-			CopyInfectedTo(Infected);
 		}
 		else if (component is InputAddedListenerComponent InputAddedListener)
 		{

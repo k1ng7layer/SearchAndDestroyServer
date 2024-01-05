@@ -44,7 +44,7 @@ namespace Services.PlayerService.Impl
         public void Dispose()
         {
             _networkServerManager.UnRegisterMessageHandler<PlayerLoadedMessage>();
-            //_networkServerManager.UnRegisterMessageHandler<SpawnPlayerMessage>();
+            _networkServerManager.UnRegisterMessageHandler<SpawnPlayerMessage>();
         }
 
         private void OnPlayerLoadedMessage(
@@ -57,7 +57,8 @@ namespace Services.PlayerService.Impl
                 Loaded = true
             };
 
-            _playerRepository.Add(player);
+            if (!_playerRepository.Players.ContainsKey(conn.connectionId))
+                _playerRepository.Add(player);
             
             PlayerLoaded?.Invoke(player);
 

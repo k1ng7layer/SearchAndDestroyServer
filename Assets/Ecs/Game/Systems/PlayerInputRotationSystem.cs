@@ -1,5 +1,6 @@
 ﻿using JCMG.EntitasRedux;
 using UnityEngine;
+using Utils;
 using Zenject;
 
 namespace Ecs.Game.Systems
@@ -11,15 +12,20 @@ namespace Ecs.Game.Systems
         private static readonly ListPool<GameEntity> EntityPool = ListPool<GameEntity>.Instance;
         
         private readonly IGroup<GameEntity> _rotationGroup;
+        private readonly GameContext _game;
         private float TurnSmoothVelocity;
         
         public PlayerInputRotationSystem(GameContext game)
         {
+            _game = game;
             _rotationGroup = game.GetGroup(GameMatcher.InputRotation);
         }
         
         public void Update()
         {
+            if (_game.GameState.Value == EGameState.Default)
+                return;
+            
             var players = EntityPool.Spawn();
             _rotationGroup.GetEntities(players);
 

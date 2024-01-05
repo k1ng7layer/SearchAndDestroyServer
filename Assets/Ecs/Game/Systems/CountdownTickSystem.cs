@@ -1,5 +1,6 @@
 ﻿using JCMG.EntitasRedux;
 using Services.TimeProvider;
+using Utils;
 
 namespace Ecs.Game.Systems
 {
@@ -19,6 +20,9 @@ namespace Ecs.Game.Systems
         
         public void Update()
         {
+            if (_game.GameState.Value == EGameState.Default)
+                return;
+            
             if (!_game.HasGameCountdown)
                 return;
             

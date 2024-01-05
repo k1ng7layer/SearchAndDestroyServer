@@ -104,5 +104,5 @@ MonoBehaviour:
   ReliableMaxMessageSize: 297433
   UnreliableMaxMessageSize: 1195
   debugLog: 0
-  statisticsGUI: 0
+  statisticsGUI: 1
   statisticsLog: 0

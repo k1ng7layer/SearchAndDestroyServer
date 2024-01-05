@@ -1,20 +1,21 @@
 ﻿using Services.SceneLoading;
+using Services.ServerManager;
 using Zenject;
 
 namespace Services.Splash
 {
     public class SplashManager : IInitializable
     {
-        private readonly ISceneLoadingManager _sceneLoadingManager;
+        private readonly IServerStateManager _serverStateManager;
 
-        public SplashManager(ISceneLoadingManager sceneLoadingManager)
+        public SplashManager(IServerStateManager serverStateManager)
         {
-            _sceneLoadingManager = sceneLoadingManager;
+            _serverStateManager = serverStateManager;
         }
         
         public void Initialize()
         {
-            _sceneLoadingManager.LoadGameFromSplash();
+            _serverStateManager.InitializeServer();
         }
     }
 }

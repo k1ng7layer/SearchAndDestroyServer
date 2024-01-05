@@ -55,6 +55,8 @@ namespace Ecs.Action.Systems
                 var rotation = spawnPos.rotation;
                 
                 var obj = Object.Instantiate(prefab.gameObject, position, rotation);
+                
+                Debug.Log($"spawn player for connection id: {connection.connectionId}");
 
                 var playerEntity = _game.CreatePlayer(connection.connectionId, position, rotation);
             

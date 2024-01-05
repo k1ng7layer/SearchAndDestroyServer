@@ -7,7 +7,7 @@ namespace Core.LoadingProcessor.Impls
     public class SetActiveSceneProcess : Process, IProgressable
     {
         private readonly ELevelName _levelName;
-        public float Progress => .5f;
+        public float Progress => 1f;
 
         public SetActiveSceneProcess(ELevelName levelName)
         {
@@ -17,6 +17,7 @@ namespace Core.LoadingProcessor.Impls
         public override void Do(Action onComplete)
         {
             SceneManager.SetActiveScene(SceneManager.GetSceneByName(_levelName.ToString()));
+            
             onComplete();
         }
     }

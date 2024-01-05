@@ -1,4 +1,5 @@
-﻿using JCMG.EntitasRedux;
+﻿using System;
+using JCMG.EntitasRedux;
 using UnityEngine;
 
 namespace Ecs.Views.Linkable.Impl
@@ -9,6 +10,11 @@ namespace Ecs.Views.Linkable.Impl
         IAttachedRemovedListener
     {
         [SerializeField] private CharacterController _characterController;
+
+        private void Awake()
+        {
+            Debug.Log($"PlayerView awake");
+        }
 
         public override void Link(IEntity entity, IContext context)
         {
@@ -34,6 +40,11 @@ namespace Ecs.Views.Linkable.Impl
         public void OnAttachedRemoved(GameEntity entity)
         {
             _characterController.enabled = true;
+        }
+
+        protected override void InternalOnDestroy()
+        {
+            Debug.Log($"PlayerView InternalOnDestroy");
         }
     }
 }

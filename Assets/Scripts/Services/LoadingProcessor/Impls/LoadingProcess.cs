@@ -24,6 +24,8 @@ namespace Core.LoadingProcessor.Impls
 
         public override void Do(Action complete)
         {
+            Debug.Log($"Load Process scene: {_levelName}");
+            
             _complete = complete;
             _operation = SceneManager.LoadSceneAsync(_levelName.ToString(), _mode);
             Observable.FromCoroutine(() => VerifySceneLoad(_operation))

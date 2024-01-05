@@ -28,10 +28,10 @@ namespace Ecs.Game.Systems
             {
                 var currentState = entity.GameState.Value;
                 
-                _networkServerManager.SendToAll(new ServerGameStateMessage
-                {
-                    GameState = (byte)currentState
-                });
+                // _networkServerManager.SendToAll(new ServerGameStateMessage
+                // {
+                //     GameState = (byte)currentState
+                // });
             }
         }
     }
