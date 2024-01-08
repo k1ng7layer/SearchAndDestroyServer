@@ -3,6 +3,8 @@ using NetworkMessages;
 using Services.Network;
 using Services.SceneLoading;
 using Services.ServerManager;
+using StateMachine;
+using StateMachine.States.Impl;
 using UniRx.Async;
 
 namespace Ecs.Game.Systems
@@ -11,14 +13,17 @@ namespace Ecs.Game.Systems
     {
         private readonly INetworkServerManager _serverManager;
         private readonly IServerStateManager _serverStateManager;
+        private readonly ServerStateMachine _serverStateMachine;
 
         public StartServerSystem(
             INetworkServerManager serverManager,
-            IServerStateManager serverStateManager
+            IServerStateManager serverStateManager,
+            ServerStateMachine serverStateMachine
         )
         {
             _serverManager = serverManager;
             _serverStateManager = serverStateManager;
+            _serverStateMachine = serverStateMachine;
         }
         
         public void Initialize()
@@ -32,11 +37,12 @@ namespace Ecs.Game.Systems
             //TODO: port number, number of players, etc
             
             
-            _serverManager.StartSever();
+            //_serverManager.StartSever();
+            _serverStateMachine.ChangeState<InitializeServerState>();
             
             //TODO: Notify SCS about server opened connection
             
-            _serverStateManager.ChangeLevel(ELevelName.CLASSIC);
+           // await _serverStateManager.ChangeLevelAsync(ELevelName.CLASSIC);
             
             // _serverManager.SendToAll(new LevelLoadingMessage
             // {

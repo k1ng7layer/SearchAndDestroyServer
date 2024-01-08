@@ -28,7 +28,7 @@ namespace Ecs.Game.Systems
         
         public void Update()
         {
-            if (_game.GameState.Value == EGameState.Default)
+            if (_game.HasGameState && _game.GameState.Value == EGameState.Default)
                 return;
             
             var npcPlayers = EntityPool.Spawn();

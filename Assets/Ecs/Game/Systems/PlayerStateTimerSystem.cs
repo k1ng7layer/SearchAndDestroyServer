@@ -35,8 +35,11 @@ namespace Ecs.Game.Systems
         
         public void Update()
         {
-            if (_game.GameState.Value == EGameState.Default)
+            if (_game.HasGameState && _game.GameState.Value == EGameState.Default)
+            {
+                Debug.Log($"TEST PlayerStateTimerSystem return");
                 return;
+            }
             
             var attachedPlayers = EntityPool.Spawn();
             _attachedParasites.GetEntities(attachedPlayers);
@@ -52,7 +55,7 @@ namespace Ecs.Game.Systems
 
                 var connId = attachedPlayer.ConnectionId.Value;
                 
-                //Debug.Log($"PlayerStateTimerSystem: {timer}");
+                Debug.Log($"PlayerStateTimerSystem: {timer}");
                 _serverManager.SendTo(connId, new PlayerStateTimerMessage
                 {
                     Value = timer

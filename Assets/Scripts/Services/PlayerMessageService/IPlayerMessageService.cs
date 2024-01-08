@@ -1,9 +1,9 @@
 ﻿using System;
 using Models;
 
-namespace Services.PlayerService
+namespace Services.PlayerMessageService
 {
-    public interface IPlayerStatusService
+    public interface IPlayerMessageService
     {
         public event Action<Player> PlayerReady;
         public event Action<Player> PlayerLoaded;

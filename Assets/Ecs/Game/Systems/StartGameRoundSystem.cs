@@ -6,7 +6,7 @@ using Zenject;
 
 namespace Ecs.Game.Systems
 {
-    public class InitializeGameStateSystem : ReactiveSystem<GameEntity>
+    public class StartGameRoundSystem : ReactiveSystem<GameEntity>
     {
         private static readonly ListPool<GameEntity> EntityPool = ListPool<GameEntity>.Instance;
         
@@ -14,7 +14,7 @@ namespace Ecs.Game.Systems
         private readonly IPlayerSettings _playerSettings;
         private readonly IGroup<GameEntity> _playerGroup;
 
-        public InitializeGameStateSystem(
+        public StartGameRoundSystem(
             GameContext game, 
             IPlayerSettings playerSettings) : base(game)
         {
@@ -35,6 +35,8 @@ namespace Ecs.Game.Systems
         {
             foreach (var entity in entities)
             {
+                _game.ReplaceGameState(EGameState.Game);
+                
                 var players = EntityPool.Spawn();
                 _playerGroup.GetEntities(players);
 

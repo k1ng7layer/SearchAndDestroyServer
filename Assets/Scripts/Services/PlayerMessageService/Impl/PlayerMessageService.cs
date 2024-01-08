@@ -1,5 +1,4 @@
 ﻿using System;
-using Ecs.Views.Linkable.Impl;
 using JCMG.EntitasRedux;
 using Mirror;
 using Models;
@@ -9,9 +8,9 @@ using Services.PlayerRepository;
 using UnityEngine;
 using Zenject;
 
-namespace Services.PlayerService.Impl
+namespace Services.PlayerMessageService.Impl
 {
-    public class PlayerStatusService : IPlayerStatusService, 
+    public class PlayerMessageService : IPlayerMessageService, 
         IInitializable, 
         IDisposable
     {
@@ -20,7 +19,7 @@ namespace Services.PlayerService.Impl
         private readonly GameContext _game;
         private readonly IGroup<GameEntity> _players;
 
-        public PlayerStatusService(
+        public PlayerMessageService(
             INetworkServerManager networkServerManager, 
             IPlayerRepository playerRepository
         )
@@ -37,14 +36,16 @@ namespace Services.PlayerService.Impl
 
         public void Initialize()
         {
-            _networkServerManager.RegisterMessageHandler<PlayerLoadedMessage>(OnPlayerLoadedMessage);
+            //_networkServerManager.RegisterMessageHandler<PlayerLoadedMessage>(OnPlayerLoadedMessage);
             _networkServerManager.RegisterMessageHandler<PlayerSpawnedMessage>(OnPlayerSpawnedMessage);
+            // _networkServerManager.RegisterMessageHandler<PlayerReadyMessage>(OnPlayerReady);
         }
 
         public void Dispose()
         {
-            _networkServerManager.UnRegisterMessageHandler<PlayerLoadedMessage>();
+            //_networkServerManager.UnRegisterMessageHandler<PlayerLoadedMessage>();
             _networkServerManager.UnRegisterMessageHandler<SpawnPlayerMessage>();
+            //_networkServerManager.UnRegisterMessageHandler<PlayerReadyMessage>();
         }
 
         private void OnPlayerLoadedMessage(
@@ -85,6 +86,20 @@ namespace Services.PlayerService.Impl
             //     
             //     NetworkServer.Spawn(view, );
             // }
+        }
+        
+        private void OnPlayerReady(
+            NetworkConnectionToClient conn, 
+            PlayerReadyMessage msg, 
+            int id)
+        {
+            var hasPlayer = _playerRepository.TryGet(conn.connectionId, out var player);
+            
+            if (!hasPlayer) return;
+
+            player.Ready = true;
+            
+            PlayerReady?.Invoke(player);
         }
     }
 }

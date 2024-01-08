@@ -1,7 +1,9 @@
 ﻿using System;
+using Models;
 using NetworkMessages;
 using Services.GameRoles;
 using Services.Network;
+using Services.PlayerRepository;
 using Services.SceneLoading;
 using UniRx.Async;
 using UnityEngine;
@@ -16,14 +18,17 @@ namespace Services.ClientStateHandler.Impl
     {
         private readonly INetworkServerManager _serverManager;
         private readonly IGameRoleService _gameRoleService;
+        private readonly IPlayerRepository _playerRepository;
 
         public ClientConnectionService(
             INetworkServerManager serverManager, 
-            IGameRoleService gameRoleService
+            IGameRoleService gameRoleService,
+            IPlayerRepository playerRepository
         )
         {
             _serverManager = serverManager;
             _gameRoleService = gameRoleService;
+            _playerRepository = playerRepository;
         }
 
         public void Initialize()
@@ -34,15 +39,16 @@ namespace Services.ClientStateHandler.Impl
         
         public void Dispose()
         {
-            _serverManager.ClientConnected -= OnClientConnected;
+            //_serverManager.ClientConnected -= OnClientConnected;
         }
 
-        private void OnClientConnected(int netId)
+        private void OnClientConnected(int connectionId)
         {
-            _serverManager.SendTo(netId, new LevelLoadingMessage
-            {
-                LevelName = ELevelName.CLASSIC.ToString()
-            });
+            //_playerRepository.Add(new Player(connectionId));
+            // _serverManager.SendTo(netId, new LevelLoadingMessage
+            // {
+            //     LevelName = ELevelName.CLASSIC.ToString()
+            // });
         }
     }
 }

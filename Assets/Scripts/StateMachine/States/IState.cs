@@ -1,9 +1,12 @@
-﻿namespace StateMachine.States
+﻿using UniRx.Async;
+
+namespace StateMachine.States
 {
     public interface IState
     {
-        void Enter();
-        void Execute();
-        void Exit();
+        void AttachStateMachine(ServerStateMachine serverStateMachine);
+        UniTask Enter();
+        UniTask Execute();
+        UniTask Exit();
     }
 }

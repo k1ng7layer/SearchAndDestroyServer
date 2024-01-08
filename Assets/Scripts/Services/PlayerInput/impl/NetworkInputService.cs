@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Linq;
 using Mirror;
+using Models;
 using NetworkMessages;
 using Services.Network;
+using Services.PlayerRepository;
 using UnityEngine;
 using Zenject;
 
@@ -13,15 +15,19 @@ namespace Services.PlayerInput.impl
         IDisposable
     {
         private readonly INetworkServerManager _networkServerManager;
-        private readonly GameContext _game;
+        private readonly IPlayerRepository _playerRepository;
 
         public NetworkInputService(
-            INetworkServerManager networkServerManager, 
-            GameContext game)
+            INetworkServerManager networkServerManager,
+            IPlayerRepository playerRepository
+        )
         {
             _networkServerManager = networkServerManager;
-            _game = game;
+            _playerRepository = playerRepository;
         }
+        
+        public event Action<Player, float> InputRotation;
+        public event Action<Player, Vector3> InputDirection;
 
         public void Initialize()
         {
@@ -39,22 +45,11 @@ namespace Services.PlayerInput.impl
             PlayerInputMessage msg, 
             int connNum)
         {
-            var playerEntity = _game.GetEntitiesWithConnectionId(connection.connectionId);
+            if (!_playerRepository.TryGet(connection.connectionId, out var player)) return;
             
-            if (playerEntity == null)
-                return;
-
-            var target = playerEntity.FirstOrDefault();
-
-            if (target != null && target.HasAttached)
-            {
-                var attached = target.Attached.Carrier;
-                
-                target = _game.GetEntityWithUid(attached);
-            }
+            var dir = new Vector3(msg.X, msg.Y, msg.Z);
             
-            Debug.Log($"OnPlayerInput, connId: {connection.connectionId}");
-            if (target != null) target.ReplaceInput(new Vector3(msg.X, msg.Y, msg.Z));
+            InputDirection?.Invoke(player, dir);
         }
         
         private void OnPlayerRotationInput(
@@ -63,13 +58,9 @@ namespace Services.PlayerInput.impl
             int connNum
         )
         {
-            var playerEntity = _game.GetEntitiesWithConnectionId(connection.connectionId);
+            if (!_playerRepository.TryGet(connection.connectionId, out var player)) return;
             
-            if (playerEntity == null)
-                return;
-            
-            Debug.Log($"OnPlayerInput, connId: {connection.connectionId}");
-            playerEntity.FirstOrDefault()?.ReplaceInputRotation(msg.YEuler);
+            InputRotation?.Invoke(player, msg.YEuler);
         }
     }
 }

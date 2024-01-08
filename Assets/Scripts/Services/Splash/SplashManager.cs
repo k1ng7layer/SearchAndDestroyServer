@@ -6,16 +6,16 @@ namespace Services.Splash
 {
     public class SplashManager : IInitializable
     {
-        private readonly IServerStateManager _serverStateManager;
+        private readonly ISceneLoadingManager _sceneLoadingManager;
 
-        public SplashManager(IServerStateManager serverStateManager)
+        public SplashManager(ISceneLoadingManager sceneLoadingManager)
         {
-            _serverStateManager = serverStateManager;
+            _sceneLoadingManager = sceneLoadingManager;
         }
         
         public void Initialize()
         {
-            _serverStateManager.InitializeServer();
+            _sceneLoadingManager.LoadGameFromSplash();
         }
     }
 }

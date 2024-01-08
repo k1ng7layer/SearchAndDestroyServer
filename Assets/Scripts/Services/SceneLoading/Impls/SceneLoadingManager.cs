@@ -70,10 +70,10 @@ namespace Services.SceneLoading.Impls
             _currentLevel = levelName;
         }
 
-        public async UniTask LoadGameLevelAsync(ELevelName levelName)
+        public UniTask LoadGameLevelAsync(ELevelName levelName)
         {
+            _loading = true;
             _completionSource = new UniTaskCompletionSource();
-            
             _processor = new Core.LoadingProcessor.Impls.LoadingProcessor();
             
             if (_currentLevel != ELevelName.INITIALIZATION)
@@ -113,6 +113,8 @@ namespace Services.SceneLoading.Impls
 
             Debug.Log($"_processor: {_processor.Progress}");
             _currentLevel = levelName;
+            
+            return _completionSource.Task;
         }
 
         public void LoadGameFromMenu()
@@ -143,6 +145,27 @@ namespace Services.SceneLoading.Impls
             
             _currentLevel = ELevelName.INITIALIZATION;
         }
+        
+        public UniTask LoadGameLevelFromSplashAsync()
+        {
+            _loading = true;
+            _completionSource = new UniTaskCompletionSource();
+            
+            _processor = new Core.LoadingProcessor.Impls.LoadingProcessor();
+            _processor
+                .AddProcess(new OpenLoadingWindowProcess(_signalBus))
+                .AddProcess(new LoadingProcess(ELevelName.INITIALIZATION, LoadSceneMode.Additive))
+                .AddProcess(new SetActiveSceneProcess(ELevelName.INITIALIZATION))
+                .AddProcess(new UnloadProcess(ELevelName.SPLASH))
+                .AddProcess(new RunContextProcess("GameContext"))
+                .AddProcess(new WaitUpdateProcess(4))
+                .AddProcess(new ProjectWindowBack(_signalBus))
+                .DoProcess();
+            
+            _currentLevel = ELevelName.INITIALIZATION;
+
+            return _completionSource.Task;
+        }
 
         public float GetProgress()
         {
@@ -153,11 +176,12 @@ namespace Services.SceneLoading.Impls
         {
             if (_processor == null || !_loading)
                 return;
-
+            //Debug.Log($"_processor: {_processor.Progress}");
             if (_processor.Progress >= 1)
             {
                 Loaded?.Invoke();
                 _loading = false;
+                _completionSource?.TrySetResult();
             }
         }
     }

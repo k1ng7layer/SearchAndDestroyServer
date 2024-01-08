@@ -1,20 +1,51 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using StateMachine.States;
+using UniRx.Async;
+using UnityEngine;
 
 namespace StateMachine
 {
     public class ServerStateMachine
     {
-        private readonly List<IState> _stateBases = new();
+        private readonly Dictionary<Type, IState> _stateBases = new();
+        private IState _currentState;
         
-        public ServerStateMachine(List<IState> stateBases)
+        public ServerStateMachine(List<IState> states)
         {
-            _stateBases = stateBases;
+            foreach (var state in states)
+            {
+                _stateBases.Add(state.GetType(), state);
+                
+                state.AttachStateMachine(this);
+            }
         }
 
-        public void ChangeState()
+        public void ChangeState<T>() where T : IState
         {
-            _stateBases[0].Enter();
+            var newState = _stateBases[typeof(T)];
+
+            try
+            {
+                ProcessState(newState).Forget();
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(e);
+                throw;
+            }
+        }
+
+        private async UniTask ProcessState(IState state)
+        {
+            if (_currentState != null) 
+            {
+                await _currentState.Exit();
+            }
+
+            _currentState = state;
+
+            await _currentState.Enter();
         }
     }
 }

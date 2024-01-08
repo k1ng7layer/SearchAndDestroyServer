@@ -1,29 +1,47 @@
-﻿using JCMG.EntitasRedux;
+﻿using System;
+using JCMG.EntitasRedux;
 using Services.LevelObjectProvider;
+using Services.PlayerRepository;
+using Signals;
 using Utils;
+using Zenject;
 
 namespace Ecs.Game.Systems
 {
-    public class InitializeGameLevelSystem : IInitializeSystem
+    public class InitializeGameLevelSystem : IInitializeSystem, IDisposable
     {
-        private readonly GameContext _game;
         private readonly ActionContext _action;
+        private readonly GameContext _game;
         private readonly ILevelObjectsHolder _levelObjectsHolder;
+        private readonly IPlayerRepository _playerRepository;
+        private readonly SignalBus _signalBus;
 
         public InitializeGameLevelSystem(
-            GameContext game, 
-            ActionContext action, 
-            ILevelObjectsHolder levelObjectsHolder)
+            ActionContext action,
+            GameContext game,
+            ILevelObjectsHolder levelObjectsHolder,
+            IPlayerRepository playerRepository,
+            SignalBus signalBus)
         {
-            _game = game;
             _action = action;
+            _game = game;
             _levelObjectsHolder = levelObjectsHolder;
+            _playerRepository = playerRepository;
+            _signalBus = signalBus;
         }
         
         public void Initialize()
         {
-            _game.ReplaceGameState(EGameState.Preparing);
-            
+            _signalBus.Subscribe<SignalLevelStart>(OnLevelStart);
+        }
+        
+        public void Dispose()
+        {
+            _signalBus.Unsubscribe<SignalLevelStart>(OnLevelStart);
+        }
+
+        private void OnLevelStart()
+        {
             var objectsHolder = _levelObjectsHolder.CommonObjectsHolder;
 
             foreach (var spawnTransform in objectsHolder.NpcSpawnTransforms)
@@ -31,7 +49,12 @@ namespace Ecs.Game.Systems
                 _action.CreateEntity().AddSpawnNpc(spawnTransform.position, spawnTransform.rotation);
             }
             
-            //_action.CreateEntity().AddSpawnNpc(objectsHolder.NpcSpawnTransforms[0].position, objectsHolder.NpcSpawnTransforms[0].rotation);
+            foreach (var playerKvp in _playerRepository.Players)
+            {
+                _action.CreateEntity().AddSpawnPlayer(playerKvp.Value.ConnectionId);
+            }
+            
+            _game.ReplaceGameState(EGameState.Countdown);
         }
     }
 }

@@ -1,29 +1,45 @@
-﻿namespace StateMachine.States
+﻿using UniRx.Async;
+
+namespace StateMachine.States
 {
     public abstract class StateBase : IState
     {
-        public void Execute()
-        {
-            OnExecute();
-        }
-
-        public void Enter()
-        {
-            OnEnter();
-        }
-
-        public void Exit()
-        {
-            OnExit();
-        }
-
-        protected virtual void OnEnter()
-        { }
-
-        protected virtual void OnExecute()
-        { }
         
-        protected virtual void OnExit()
-        { }
+        public void AttachStateMachine(ServerStateMachine serverStateMachine)
+        {
+            StateMachine = serverStateMachine;
+        }
+        
+        protected ServerStateMachine StateMachine { get; private set; }
+        
+        public UniTask Execute()
+        {
+            return OnExecute();
+        }
+
+        public UniTask Enter()
+        {
+            return OnEnter();
+        }
+
+        public UniTask Exit()
+        {
+            return OnExit();
+        }
+
+        protected virtual UniTask OnEnter()
+        {
+            return UniTask.CompletedTask;
+        }
+
+        protected virtual UniTask OnExecute()
+        {
+            return UniTask.CompletedTask;
+        }
+
+        protected virtual UniTask OnExit()
+        {
+            return UniTask.CompletedTask;
+        }
     }
 }

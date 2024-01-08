@@ -10,6 +10,7 @@ namespace Services.SceneLoading
         UniTask LoadGameLevelAsync(ELevelName levelName);
         void LoadGameFromMenu();
         void LoadGameFromSplash();
+        UniTask LoadGameLevelFromSplashAsync();
         float GetProgress();
     }
 }

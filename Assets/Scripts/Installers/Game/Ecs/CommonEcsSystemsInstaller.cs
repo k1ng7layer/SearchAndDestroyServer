@@ -1,7 +1,6 @@
 ﻿using Ecs.Action.Systems;
 using Ecs.Game.Systems;
 using Services.PlayerInput.impl;
-using Services.PlayerService.Impl;
 using Zenject;
 using SpawnPlayerSystem = Ecs.Action.Systems.SpawnPlayerSystem;
 
@@ -12,11 +11,10 @@ namespace Installers.Game.Ecs
         public override void InstallBindings()
         {
             Container.BindInterfacesAndSelfTo<InitializeGameLevelSystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<InitializeGameStateSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<SyncGameStateSystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<WaitPlayersLoadedSystem>().AsSingle();
+            //Container.BindInterfacesAndSelfTo<WaitPlayersLoadedSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<SpawnPlayerSystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<WaitPlayerSpawnedSystem>().AsSingle();
+            //Container.BindInterfacesAndSelfTo<WaitPlayerSpawnedSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<StartPreparingCountdownSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<MoveDirectionSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerInputRotationSystem>().AsSingle();
@@ -30,14 +28,16 @@ namespace Installers.Game.Ecs
             Container.BindInterfacesAndSelfTo<PlayerStateTimerSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<DetachPlayerSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<MentalOverloadSystem>().AsSingle();
-            Container.BindInterfacesAndSelfTo<ControlSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<StopGameRoundSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<StartGameRoundSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<ReadPlayerMovementSystem>().AsSingle();
             
             BindServices();
         }
 
         private void BindServices()
         {
-            Container.BindInterfacesAndSelfTo<NetworkInputService>().AsSingle();
+            
         }
     }
 }

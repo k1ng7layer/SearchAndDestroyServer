@@ -4,8 +4,8 @@ using Models;
 using NetworkMessages;
 using Services.GameRoles;
 using Services.Network;
+using Services.PlayerMessageService;
 using Services.PlayerRepository;
-using Services.PlayerService;
 using Services.ServerManager;
 
 namespace Ecs.Game.Systems
@@ -13,7 +13,7 @@ namespace Ecs.Game.Systems
     public class WaitPlayersLoadedSystem : IInitializeSystem, 
         IDisposable
     {
-        private readonly IPlayerStatusService _playerStatusService;
+        private readonly IPlayerMessageService _playerMessageService;
         private readonly IPlayerRepository _playerRepository;
         private readonly INetworkServerManager _serverManager;
         private readonly IGameRoleService _gameRoleService;
@@ -21,7 +21,7 @@ namespace Ecs.Game.Systems
         private readonly ActionContext _action;
 
         public WaitPlayersLoadedSystem(
-            IPlayerStatusService playerStatusService, 
+            IPlayerMessageService playerMessageService, 
             IPlayerRepository playerRepository,
             INetworkServerManager serverManager,
             IGameRoleService gameRoleService,
@@ -29,7 +29,7 @@ namespace Ecs.Game.Systems
             ActionContext action
         )
         {
-            _playerStatusService = playerStatusService;
+            _playerMessageService = playerMessageService;
             _playerRepository = playerRepository;
             _action = action;
             _serverManager = serverManager;
@@ -40,13 +40,13 @@ namespace Ecs.Game.Systems
         public void Initialize()
         {
             //TODO: start timer
-            _playerStatusService.PlayerLoaded += OnPlayerLoaded;
+            _playerMessageService.PlayerLoaded += OnPlayerLoaded;
             _serverStateManager.ServerReady += SpawnPlayers;
         }
         
         public void Dispose()
         {
-            _playerStatusService.PlayerLoaded -= OnPlayerLoaded;
+            _playerMessageService.PlayerLoaded -= OnPlayerLoaded;
             _serverStateManager.ServerReady -= SpawnPlayers;
         }
 

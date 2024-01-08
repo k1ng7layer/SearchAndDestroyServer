@@ -3,8 +3,8 @@
     public class Player
     {
         public bool Loaded;
-        public bool Ready;
-        public int ConnectionId;
+        public bool Ready { get; set; }
+        public int ConnectionId { get; set; }
         
         public Player(int connectionId)
         {

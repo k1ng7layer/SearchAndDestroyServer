@@ -1,5 +1,6 @@
 ﻿using System;
 using Services.SceneLoading;
+using UniRx.Async;
 
 namespace Services.ServerManager
 {
@@ -9,7 +10,8 @@ namespace Services.ServerManager
         public event Action GameStopped;
         public event Action ServerReady;
         void InitializeServer();
-        void ChangeLevel(ELevelName levelName);
+        UniTask ChangeLevelAsync(ELevelName levelName);
+        void SetServerState(EServerState state);
         void Pause(bool value);
         void ShutDownServer();
     }

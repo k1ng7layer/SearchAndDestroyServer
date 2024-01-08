@@ -3,6 +3,8 @@ using NetworkMessages;
 using Services.Network;
 using Services.SceneLoading;
 using Services.ServerManager;
+using StateMachine;
+using StateMachine.States.Impl;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,19 +15,13 @@ namespace Utils
     public class ControlPanel : MonoBehaviour
     {
         [SerializeField] private Button RestartButton;
-        [Inject] private INetworkServerManager _networkServerManager;
-        [Inject] private IServerStateManager _serverStateManager;
+        [Inject] private readonly ServerStateMachine _serverStateMachine;
 
         private void Awake()
         {
             RestartButton.OnClickAsObservable().Subscribe(_ =>
             {
-                // _networkServerManager.SendToAll(new LevelLoadingMessage
-                // {
-                //     LevelName = ELevelName.CLASSIC.ToString()
-                // });
-                
-                _serverStateManager.ChangeLevel(ELevelName.CLASSIC);
+                _serverStateMachine.ChangeState<NextLevelLoadingState>();
             }).AddTo(gameObject);
         }
     }

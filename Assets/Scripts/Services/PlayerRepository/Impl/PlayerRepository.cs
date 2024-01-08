@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Models;
+using UnityEngine;
 
 namespace Services.PlayerRepository.Impl
 {
@@ -11,6 +12,7 @@ namespace Services.PlayerRepository.Impl
 
         public void Add(Player player)
         {
+            Debug.Log($"PlayerRepository add: {player.ConnectionId}");
             _playersTable.Add(player.ConnectionId, player);
         }
 

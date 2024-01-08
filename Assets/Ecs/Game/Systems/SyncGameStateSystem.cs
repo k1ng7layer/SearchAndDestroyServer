@@ -2,6 +2,7 @@
 using JCMG.EntitasRedux;
 using NetworkMessages;
 using Services.Network;
+using Utils;
 
 namespace Ecs.Game.Systems
 {
@@ -20,7 +21,10 @@ namespace Ecs.Game.Systems
         protected override ICollector<GameEntity> GetTrigger(IContext<GameEntity> context) =>
             context.CreateCollector(GameMatcher.GameState);
 
-        protected override bool Filter(GameEntity entity) => entity.HasGameState && !entity.IsDestroyed;
+        protected override bool Filter(GameEntity entity) 
+            => entity.HasGameState 
+               && entity.GameState.Value != EGameState.Default 
+               && !entity.IsDestroyed;
 
         protected override void Execute(List<GameEntity> entities)
         {
@@ -28,10 +32,10 @@ namespace Ecs.Game.Systems
             {
                 var currentState = entity.GameState.Value;
                 
-                // _networkServerManager.SendToAll(new ServerGameStateMessage
-                // {
-                //     GameState = (byte)currentState
-                // });
+                _networkServerManager.SendToAll(new ServerGameStateMessage
+                {
+                    GameState = (byte)currentState
+                });
             }
         }
     }
