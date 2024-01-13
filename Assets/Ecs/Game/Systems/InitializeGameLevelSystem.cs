@@ -1,6 +1,7 @@
 ﻿using System;
 using JCMG.EntitasRedux;
 using Services.LevelObjectProvider;
+using Services.Network;
 using Services.PlayerRepository;
 using Signals;
 using Utils;
@@ -15,19 +16,22 @@ namespace Ecs.Game.Systems
         private readonly ILevelObjectsHolder _levelObjectsHolder;
         private readonly IPlayerRepository _playerRepository;
         private readonly SignalBus _signalBus;
+        private readonly INetworkServerManager _networkServerManager;
 
         public InitializeGameLevelSystem(
             ActionContext action,
             GameContext game,
             ILevelObjectsHolder levelObjectsHolder,
             IPlayerRepository playerRepository,
-            SignalBus signalBus)
+            SignalBus signalBus,
+            INetworkServerManager networkServerManager)
         {
             _action = action;
             _game = game;
             _levelObjectsHolder = levelObjectsHolder;
             _playerRepository = playerRepository;
             _signalBus = signalBus;
+            _networkServerManager = networkServerManager;
         }
         
         public void Initialize()
@@ -53,7 +57,10 @@ namespace Ecs.Game.Systems
             {
                 _action.CreateEntity().AddSpawnPlayer(playerKvp.Value.ConnectionId);
             }
+
+            _action.CreateEntity().IsSendRolesWeird = true;
             
+            //send message with roles
             _game.ReplaceGameState(EGameState.Countdown);
         }
     }

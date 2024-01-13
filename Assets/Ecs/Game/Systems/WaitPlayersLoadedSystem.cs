@@ -54,7 +54,7 @@ namespace Ecs.Game.Systems
         {
             _gameRoleService.TryGetGameRole(out var role);
             
-            _serverManager.SendTo(player.ConnectionId, new RoleAssignMessage
+            _serverManager.SendTo(player.ConnectionId, new RoleInitialAssignMessage
             {
                 Role = (byte)role
             });

@@ -74,10 +74,6 @@ public partial class GameEntity
 		{
 			CopyInputRotationTo(InputRotation);
 		}
-		else if (component is Ecs.Game.Components.HostileComponent Hostile)
-		{
-			IsHostile = true;
-		}
 		else if (component is Ecs.Game.Components.DestroyedComponent Destroyed)
 		{
 			IsDestroyed = true;
@@ -97,6 +93,10 @@ public partial class GameEntity
 		else if (component is Ecs.Game.Components.TransformComponent Transform)
 		{
 			CopyTransformTo(Transform);
+		}
+		else if (component is Ecs.Game.Components.ParasiteComponent Parasite)
+		{
+			IsParasite = true;
 		}
 		else if (component is Ecs.Game.Components.RotationComponent Rotation)
 		{

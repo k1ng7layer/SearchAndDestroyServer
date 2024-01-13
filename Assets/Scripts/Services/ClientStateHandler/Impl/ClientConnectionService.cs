@@ -34,7 +34,7 @@ namespace Services.ClientStateHandler.Impl
         public void Initialize()
         {
             _serverManager.ClientConnected += OnClientConnected;
-            _gameRoleService.InitializeSession(1);
+            _gameRoleService.InitializeRoles(1);
         }
         
         public void Dispose()

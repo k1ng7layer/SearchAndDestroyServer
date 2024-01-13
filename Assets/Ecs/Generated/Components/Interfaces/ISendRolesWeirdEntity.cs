@@ -7,7 +7,7 @@
 //		the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public partial interface IHostileEntity
+public partial interface ISendRolesWeirdEntity
 {
-	bool IsHostile { get; set; }
+	bool IsSendRolesWeird { get; set; }
 }

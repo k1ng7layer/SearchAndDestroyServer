@@ -7,12 +7,7 @@
 //		the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-public partial interface ISpawnPlayerEntity
+public partial interface IParasiteEntity
 {
-	Ecs.Action.Components.SpawnPlayerComponent SpawnPlayer { get; }
-	bool HasSpawnPlayer { get; }
-
-	void AddSpawnPlayer(int newConnectionId);
-	void ReplaceSpawnPlayer(int newConnectionId);
-	void RemoveSpawnPlayer();
+	bool IsParasite { get; set; }
 }

@@ -5,7 +5,9 @@ using Ecs.Views.Linkable;
 using Ecs.Views.Linkable.Impl;
 using JCMG.EntitasRedux;
 using Mirror;
+using Services.GameRoles;
 using Services.LevelObjectProvider;
+using Services.PlayerRepository;
 using UnityEngine;
 
 namespace Ecs.Action.Systems
@@ -15,17 +17,20 @@ namespace Ecs.Action.Systems
         private readonly IPrefabsBase _prefabsBase;
         private readonly GameContext _game;
         private readonly ILevelObjectsHolder _levelObjectsHolder;
+        private readonly IPlayerRepository _playerRepository;
 
         public SpawnPlayerSystem(
             ActionContext action, 
             IPrefabsBase prefabsBase,
             GameContext game,
-            ILevelObjectsHolder levelObjectsHolder
+            ILevelObjectsHolder levelObjectsHolder,
+            IPlayerRepository playerRepository
         ) : base(action)
         {
             _prefabsBase = prefabsBase;
             _game = game;
             _levelObjectsHolder = levelObjectsHolder;
+            _playerRepository = playerRepository;
         }
 
         protected override ICollector<ActionEntity> GetTrigger(IContext<ActionEntity> context) =>
@@ -39,17 +44,22 @@ namespace Ecs.Action.Systems
             {
                 entity.IsDestroyed = true;
 
-                var connIndex = entity.SpawnPlayer.ConnectionIndex;
+                var connectionId = entity.SpawnPlayer.ConnectionId;
                 
-                //TODO:temp
-                if (!NetworkServer.connections.ContainsKey(connIndex))
+                if (!_playerRepository.TryGet(connectionId, out var player))
                     continue;
                 
-                var connection = NetworkServer.connections[connIndex];
+                //TODO:temp
+                if (!NetworkServer.connections.ContainsKey(connectionId))
+                    continue;
+                
+                var connection = NetworkServer.connections[connectionId];
                 
                 var prefab = _prefabsBase.Get("Player2");
 
-                var spawnPos = _levelObjectsHolder.CommonObjectsHolder.PlayerSpawnTransform;
+                var spawnPos = player.Role == EGameRole.Parasite
+                    ? _levelObjectsHolder.CommonObjectsHolder.ParasiteSpawnTransform
+                    : _levelObjectsHolder.CommonObjectsHolder.GunnersSpawnTransforms[0];
 
                 var position = spawnPos.position;
                 var rotation = spawnPos.rotation;
@@ -67,6 +77,9 @@ namespace Ecs.Action.Systems
                 view.Link(playerEntity, _game);
 
                 playerEntity.IsInstantiate = true;
+
+                playerEntity.IsParasite = player.Role == EGameRole.Parasite;
+                playerEntity.IsGunner = player.Role == EGameRole.Gunner;
                 
                 NetworkServer.AddPlayerForConnection(connection, obj);
                 

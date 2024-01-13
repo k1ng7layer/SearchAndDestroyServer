@@ -727,7 +727,7 @@ GameObject:
   m_Component:
   - component: {fileID: 688557737}
   m_Layer: 0
-  m_Name: PlayerSpawnTransform
+  m_Name: ParasiteSpawnTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -912,6 +912,37 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &985256822
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 985256823}
+  m_Layer: 0
+  m_Name: GunnerSpawnTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &985256823
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 985256822}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 11.1, z: -33.38}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &994310718
 Mesh:
   m_ObjectHideFlags: 0
@@ -1142,7 +1173,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f74ae3015d4b4dada24dafe0e6158bd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerSpawnTransform: {fileID: 688557737}
+  ParasiteSpawnTransform: {fileID: 688557737}
+  GunnersSpawnTransforms:
+  - {fileID: 985256823}
   NpcSpawnTransforms:
   - {fileID: 1450735048}
   - {fileID: 2138556392}

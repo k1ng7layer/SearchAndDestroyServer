@@ -3,7 +3,7 @@
 namespace Ecs.Game.Components
 {
     [Game]
-    public class HostileComponent : IComponent
+    public class ParasiteComponent : IComponent
     {
         
     }

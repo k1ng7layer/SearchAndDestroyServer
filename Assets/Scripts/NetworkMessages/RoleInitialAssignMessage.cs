@@ -2,7 +2,7 @@
 
 namespace NetworkMessages
 {
-    public struct RoleAssignMessage : NetworkMessage
+    public struct RoleInitialAssignMessage : NetworkMessage
     {
         public byte Role;
     }

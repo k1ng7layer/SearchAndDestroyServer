@@ -12,22 +12,22 @@ public partial class ActionEntity
 	public Ecs.Action.Components.SpawnPlayerComponent SpawnPlayer { get { return (Ecs.Action.Components.SpawnPlayerComponent)GetComponent(ActionComponentsLookup.SpawnPlayer); } }
 	public bool HasSpawnPlayer { get { return HasComponent(ActionComponentsLookup.SpawnPlayer); } }
 
-	public void AddSpawnPlayer(int newConnectionIndex)
+	public void AddSpawnPlayer(int newConnectionId)
 	{
 		var index = ActionComponentsLookup.SpawnPlayer;
 		var component = (Ecs.Action.Components.SpawnPlayerComponent)CreateComponent(index, typeof(Ecs.Action.Components.SpawnPlayerComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
-		component.ConnectionIndex = newConnectionIndex;
+		component.ConnectionId = newConnectionId;
 		#endif
 		AddComponent(index, component);
 	}
 
-	public void ReplaceSpawnPlayer(int newConnectionIndex)
+	public void ReplaceSpawnPlayer(int newConnectionId)
 	{
 		var index = ActionComponentsLookup.SpawnPlayer;
 		var component = (Ecs.Action.Components.SpawnPlayerComponent)CreateComponent(index, typeof(Ecs.Action.Components.SpawnPlayerComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
-		component.ConnectionIndex = newConnectionIndex;
+		component.ConnectionId = newConnectionId;
 		#endif
 		ReplaceComponent(index, component);
 	}
@@ -37,7 +37,7 @@ public partial class ActionEntity
 		var index = ActionComponentsLookup.SpawnPlayer;
 		var component = (Ecs.Action.Components.SpawnPlayerComponent)CreateComponent(index, typeof(Ecs.Action.Components.SpawnPlayerComponent));
 		#if !ENTITAS_REDUX_NO_IMPL
-		component.ConnectionIndex = copyComponent.ConnectionIndex;
+		component.ConnectionId = copyComponent.ConnectionId;
 		#endif
 		ReplaceComponent(index, component);
 	}

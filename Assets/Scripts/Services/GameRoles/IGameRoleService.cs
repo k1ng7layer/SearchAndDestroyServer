@@ -2,7 +2,7 @@
 {
     public interface IGameRoleService
     {
-        void InitializeSession(int playerNum);
+        void InitializeRoles(int playerNum);
         bool TryGetGameRole(out EGameRole role);
     }
 }

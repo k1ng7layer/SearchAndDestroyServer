@@ -31,6 +31,7 @@ namespace Installers.Game.Ecs
             Container.BindInterfacesAndSelfTo<StopGameRoundSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<StartGameRoundSystem>().AsSingle();
             Container.BindInterfacesAndSelfTo<ReadPlayerMovementSystem>().AsSingle();
+            Container.BindInterfacesAndSelfTo<SendRolesWeirdSystem>().AsSingle();
             
             BindServices();
         }

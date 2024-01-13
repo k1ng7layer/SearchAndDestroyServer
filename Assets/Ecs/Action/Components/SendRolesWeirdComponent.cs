@@ -3,8 +3,8 @@
 namespace Ecs.Action.Components
 {
     [Action]
-    public class SpawnPlayerComponent : IComponent
+    public class SendRolesWeirdComponent : IComponent
     {
-        public int ConnectionId;
+        
     }
 }

@@ -1,10 +1,15 @@
-﻿using Mirror;
+﻿using System.Collections.Generic;
+using Helpers;
+using Mirror;
+using Models;
 using NetworkMessages;
+using Palmmedia.ReportGenerator.Core.Common;
 using Services.GameRoles;
 using Services.Network;
 using Services.PlayerRepository;
 using Signals;
 using UniRx.Async;
+using UnityEngine;
 using Zenject;
 
 namespace StateMachine.States.Impl
@@ -34,17 +39,34 @@ namespace StateMachine.States.Impl
         {
             _roleAttachTcs?.TrySetCanceled();
             
-            _gameRoleService.InitializeSession(1);
+            _gameRoleService.InitializeRoles(1);
             
             _networkServerManager.RegisterMessageHandler<PlayerReadyMessage>(OnPlayerReady);
+
+           // var roles = new List<GameRole>();
             
             foreach (var kvp in _playerRepository.Players)
             {
                 _gameRoleService.TryGetGameRole(out var role);
                 
-                _networkServerManager.SendTo(kvp.Value.ConnectionId, new RoleAssignMessage
+                // roles.Add(new GameRole
+                // {
+                //     Role = (byte)role,
+                //     ClientId = kvp.Value.ConnectionId
+                // });
+            }
+            
+            foreach (var kvp in _playerRepository.Players)
+            {
+                var player = kvp.Value;
+                
+                _gameRoleService.TryGetGameRole(out var role);
+
+                player.Role = role;
+                
+                _networkServerManager.SendTo(player.ConnectionId, new RoleInitialAssignMessage
                 {
-                    Role = (byte)role
+                    Role = (byte)role,
                 });
             }
             

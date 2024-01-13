@@ -9,8 +9,10 @@ namespace Services.GameRoles.Impl
     {
         private readonly Queue<EGameRole> _roles = new();
         
-        public void InitializeSession(int playerNum)
+        public void InitializeRoles(int playerNum)
         {
+            Random.InitState(DateTime.Now.GetHashCode());
+            
             var roles = (EGameRole[])Enum.GetValues(typeof(EGameRole));
             
             for (var i = 0; i < playerNum; i++)

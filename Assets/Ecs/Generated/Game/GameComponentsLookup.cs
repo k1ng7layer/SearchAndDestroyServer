@@ -28,16 +28,16 @@ public static class GameComponentsLookup
 	public const int GameCountdown = 12;
 	public const int GameState = 13;
 	public const int Gunner = 14;
-	public const int Hostile = 15;
-	public const int Infected = 16;
-	public const int Input = 17;
-	public const int InputRotation = 18;
-	public const int Instantiate = 19;
-	public const int Link = 20;
-	public const int MoveDirection = 21;
-	public const int NetworkId = 22;
-	public const int Npc = 23;
-	public const int Owner = 24;
+	public const int Infected = 15;
+	public const int Input = 16;
+	public const int InputRotation = 17;
+	public const int Instantiate = 18;
+	public const int Link = 19;
+	public const int MoveDirection = 20;
+	public const int NetworkId = 21;
+	public const int Npc = 22;
+	public const int Owner = 23;
+	public const int Parasite = 24;
 	public const int Player = 25;
 	public const int Position = 26;
 	public const int Prefab = 27;
@@ -74,7 +74,6 @@ public static class GameComponentsLookup
 		"GameCountdown",
 		"GameState",
 		"Gunner",
-		"Hostile",
 		"Infected",
 		"Input",
 		"InputRotation",
@@ -84,6 +83,7 @@ public static class GameComponentsLookup
 		"NetworkId",
 		"Npc",
 		"Owner",
+		"Parasite",
 		"Player",
 		"Position",
 		"Prefab",
@@ -119,7 +119,6 @@ public static class GameComponentsLookup
 		typeof(Ecs.Game.Components.GameCountdownComponent),
 		typeof(Ecs.Game.Components.GameStateComponent),
 		typeof(Ecs.Game.Components.GunnerComponent),
-		typeof(Ecs.Game.Components.HostileComponent),
 		typeof(Ecs.Game.Components.InfectedComponent),
 		typeof(Ecs.Game.Components.InputComponent),
 		typeof(Ecs.Game.Components.InputRotationComponent),
@@ -129,6 +128,7 @@ public static class GameComponentsLookup
 		typeof(Ecs.Game.Components.NetworkIdComponent),
 		typeof(Ecs.Game.Components.NpcComponent),
 		typeof(Ecs.Game.Components.OwnerComponent),
+		typeof(Ecs.Game.Components.ParasiteComponent),
 		typeof(Ecs.Game.Components.PlayerComponent),
 		typeof(Ecs.Game.Components.PositionComponent),
 		typeof(Ecs.Game.Components.PrefabComponent),
@@ -164,16 +164,16 @@ public static class GameComponentsLookup
 		{ typeof(Ecs.Game.Components.GameCountdownComponent), 12 },
 		{ typeof(Ecs.Game.Components.GameStateComponent), 13 },
 		{ typeof(Ecs.Game.Components.GunnerComponent), 14 },
-		{ typeof(Ecs.Game.Components.HostileComponent), 15 },
-		{ typeof(Ecs.Game.Components.InfectedComponent), 16 },
-		{ typeof(Ecs.Game.Components.InputComponent), 17 },
-		{ typeof(Ecs.Game.Components.InputRotationComponent), 18 },
-		{ typeof(Ecs.Game.Components.InstantiateComponent), 19 },
-		{ typeof(Ecs.Game.Components.LinkComponent), 20 },
-		{ typeof(Ecs.Game.Components.MoveDirectionComponent), 21 },
-		{ typeof(Ecs.Game.Components.NetworkIdComponent), 22 },
-		{ typeof(Ecs.Game.Components.NpcComponent), 23 },
-		{ typeof(Ecs.Game.Components.OwnerComponent), 24 },
+		{ typeof(Ecs.Game.Components.InfectedComponent), 15 },
+		{ typeof(Ecs.Game.Components.InputComponent), 16 },
+		{ typeof(Ecs.Game.Components.InputRotationComponent), 17 },
+		{ typeof(Ecs.Game.Components.InstantiateComponent), 18 },
+		{ typeof(Ecs.Game.Components.LinkComponent), 19 },
+		{ typeof(Ecs.Game.Components.MoveDirectionComponent), 20 },
+		{ typeof(Ecs.Game.Components.NetworkIdComponent), 21 },
+		{ typeof(Ecs.Game.Components.NpcComponent), 22 },
+		{ typeof(Ecs.Game.Components.OwnerComponent), 23 },
+		{ typeof(Ecs.Game.Components.ParasiteComponent), 24 },
 		{ typeof(Ecs.Game.Components.PlayerComponent), 25 },
 		{ typeof(Ecs.Game.Components.PositionComponent), 26 },
 		{ typeof(Ecs.Game.Components.PrefabComponent), 27 },
