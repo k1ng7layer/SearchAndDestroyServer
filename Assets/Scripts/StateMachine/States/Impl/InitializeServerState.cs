@@ -27,7 +27,7 @@ namespace StateMachine.States.Impl
             
             await _sceneLoadingManager.LoadGameLevelAsync(ELevelName.CLASSIC);
             
-            StateMachine.ChangeState<PendingForConnectionsState>();
+            StateMachine.ChangeState<PendingForConnectionsState2>();
         }
     }
 }

@@ -64,10 +64,12 @@ namespace Installers.Project
             Container.BindInterfacesAndSelfTo<ServerStateMachine>().AsSingle();
             
             Container.BindInterfacesTo<InitializeServerState>().AsSingle();
-            Container.BindInterfacesTo<PendingForConnectionsState>().AsSingle();
+            //Container.BindInterfacesTo<PendingForConnectionsState>().AsSingle();
+            Container.BindInterfacesTo<PendingForConnectionsState2>().AsSingle();
             Container.BindInterfacesTo<BeginGameLevelState>().AsSingle();
             Container.BindInterfacesTo<NextLevelLoadingState>().AsSingle();
             Container.BindInterfacesTo<GameLevelLoopState>().AsSingle();
+            Container.BindInterfacesTo<InitialClientLoadingState>().AsSingle();
         }
 
         private void BindSignals()

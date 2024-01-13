@@ -35,8 +35,35 @@ namespace StateMachine
                 throw;
             }
         }
+        
+        public void ChangeState<T, TArgs>(TArgs args) where T : IState
+        {
+            var newState = _stateBases[typeof(T)];
+
+            try
+            {
+                ProcessState(newState).Forget();
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(e);
+                throw;
+            }
+        }
 
         private async UniTask ProcessState(IState state)
+        {
+            if (_currentState != null) 
+            {
+                await _currentState.Exit();
+            }
+
+            _currentState = state;
+
+            await _currentState.Enter();
+        }
+        
+        private async UniTask ProcessState<TArgs>(IState state, TArgs args)
         {
             if (_currentState != null) 
             {
